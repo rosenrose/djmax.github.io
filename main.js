@@ -63,10 +63,10 @@ for (let radio of document.querySelectorAll("#modeSelect input")) {
     });
 }
 
-let levelCheck = document.querySelector("#levelCheck");
-levelCheck.addEventListener("change", event => {
-    setDisplay(event.target.checked, "block", ...document.querySelectorAll("#levelSelect div"))
-});
+// let levelCheck = document.querySelector("#levelCheck");
+// levelCheck.addEventListener("change", event => {
+//     setDisplay(event.target.checked, "block", ...document.querySelectorAll("#levelSelect div"))
+// });
 
 for (let check of document.querySelectorAll("#buttonSelect input")) {
     check.addEventListener("change", event => {
@@ -88,9 +88,6 @@ document.querySelector("#run").addEventListener("click", () => {
         }
     }
     result = result.filter(song => song.hasOwnProperty("exclusive")? song["exclusive"] == mode : true);
-    if (levelCheck.checked) {
-         
-    }
 
     let rands = new Set();
     let min = Math.min(count, result.length);
