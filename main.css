@@ -1,6 +1,9 @@
 .center {
     text-align: center;
 }
+.left {
+    text-align: left;
+}
 .inline {
     display: inline;
 }
@@ -15,6 +18,54 @@
     font-weight: 600;
 }
 
+body {
+    background-image: url('cover.jpg');
+    background-size: cover;
+}
+div {
+    margin: 0px 0px 5px 0px;
+}
+table {
+    display: inline;
+}
+td {
+    width: 25%;
+}
+ol {
+    padding-left: 15%;
+}
+p.title {
+    width: 100%;
+    font-size: 1.5em;
+    text-decoration: underline;
+}
+li p {
+    margin: 3%;
+}
+
+#happy {
+    width: 50%;
+}
+#result {
+    padding: 1%;
+    background-color: #fff;
+    border-radius: 2em;
+    width: 35%;
+    margin: auto;
+}
+#run {
+    font-size: 1.5em;
+    border-radius: 2em;
+}
+#levelSelect div {
+    display: none;
+}
+
 @media ( max-width: 768px ) {
-    
+    body {
+        background-size: contain;
+    }
+    #happy, #result {
+        width: 100%;
+    }
 }
