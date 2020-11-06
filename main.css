@@ -1,0 +1,20 @@
+.center {
+    text-align: center;
+}
+.inline {
+    display: inline;
+}
+.color-white {
+    color: #fff;
+}
+.shadow-white {
+    text-shadow: 1px 1px 0px #fff, -1px 1px 0px #fff, 1px -1px 0px #fff, -1px -1px 0px #fff,
+                2px 2px 5px #fff, -2px 2px 5px #fff, 2px -2px 5px #fff, -2px -2px 5px #fff;
+}
+.bold {
+    font-weight: 600;
+}
+
+@media ( max-width: 768px ) {
+    
+}
