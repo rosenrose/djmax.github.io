@@ -63,6 +63,9 @@ li p {
 #levelSelect div {
     display: none;
 }
+#levelInput {
+    width: 3.5em;
+}
 
 @media ( max-width: 768px ) {
     body {

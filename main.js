@@ -81,9 +81,16 @@ for (let check of document.querySelectorAll("#buttonSelect input")) {
     check.click();
 }
 
-document.querySelector("#levelList").addEventListener("change", event => {
-    levelLimit = event.target.value;
+document.querySelector("#levelInput").addEventListener("change", event => {
+    levelLimit = parseInt(event.target.value);
 });
+
+document.querySelector("#gtr_equal").addEventListener("change", event => {
+    gtr_equal = event.target.value;
+});
+document.querySelector("#gtr_equal").value = "gtr";
+document.querySelector("#gtr_equal").dispatchEvent(new InputEvent("change"));
+
 
 document.querySelector("#run").addEventListener("click", () => {
     let result = [];
@@ -99,14 +106,27 @@ document.querySelector("#run").addEventListener("click", () => {
             for (let btn of btnSelect) {
                 levels = [...levels, ...Object.values(result[i]["level"][btn])];
             }
-            if (Math.max(...levels) < levelLimit) {
-                result.splice(i, 1);
+
+            if (gtr_equal == "gtr") {
+                if (Math.max(...levels) < levelLimit) {
+                    result.splice(i, 1);
+                }
+                else {
+                    i++;
+                }
             }
-            else {
-                i++;
+            else if (gtr_equal == "equal") {
+                if (!levels.includes(levelLimit)) {
+                    result.splice(i, 1);
+                }
+                else {
+                    result[i]["equal"] = getLevel(result[i]["level"], btnSelect, levelLimit);
+                    i++;
+                }
             }
         }
     }
+    console.log(result);
 
     let rands = new Set();
     let min = Math.min(count, result.length);
@@ -120,8 +140,12 @@ document.querySelector("#run").addEventListener("click", () => {
     }
     let li = document.querySelectorAll("#result li");
     for (let i=0; i<min; i++) {
-        li[i].querySelectorAll("p")[0].textContent = resultList[i]["title"];
-        li[i].querySelectorAll("p")[1].textContent = resultList[i]["artist"];
+        let p = li[i].querySelectorAll("p");
+        p[0].textContent = resultList[i]["title"];
+        if (resultList[i].hasOwnProperty("equal")) {
+            p[0].textContent += ` (${resultList[i]["equal"]})`
+        }
+        p[1].textContent = resultList[i]["artist"];
     }
 });
 
@@ -134,6 +158,18 @@ function setDisplay(condition, display, ...element) {
             elem.style.display = "none";
         }
     }
+}
+
+function getLevel(level, btns, num) {
+    let result = []
+    for (let btn of btns) {
+        for (let rank in level[btn]) {
+            if (level[btn][rank] == num) {
+                result.push(btn+" "+rank);
+            }
+        }
+    }
+    return result.join(", ");
 }
 
 function getRandomInt(minInclude, maxExclude) {
