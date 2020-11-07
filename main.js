@@ -1,5 +1,6 @@
 dlcSelect = new Set();
 btnSelect = new Set();
+levelLimit = 0;
 const count = 10;
 
 fetch("list.json").then(response => response.json())
@@ -13,7 +14,7 @@ fetch("list.json").then(response => response.json())
         let dlc = Object.keys(list.songs)[i];
         let label = document.createElement("label");
         label.className = "shadow-white";
-        label.id = dlc.replaceAll(" ","_");
+        label.id = dlc.replace(" ","_");
         let input = document.createElement("input");
         input.type = "checkbox";
         input.value = dlc;
@@ -63,10 +64,10 @@ for (let radio of document.querySelectorAll("#modeSelect input")) {
     });
 }
 
-// let levelCheck = document.querySelector("#levelCheck");
-// levelCheck.addEventListener("change", event => {
-//     setDisplay(event.target.checked, "block", ...document.querySelectorAll("#levelSelect div"))
-// });
+let levelCheck = document.querySelector("#levelCheck");
+levelCheck.addEventListener("change", event => {
+    setDisplay(event.target.checked, "block", ...document.querySelectorAll("#levelSelect div"))
+});
 
 for (let check of document.querySelectorAll("#buttonSelect input")) {
     check.addEventListener("change", event => {
@@ -80,6 +81,10 @@ for (let check of document.querySelectorAll("#buttonSelect input")) {
     check.click();
 }
 
+document.querySelector("#levelList").addEventListener("change", event => {
+    levelLimit = event.target.value;
+});
+
 document.querySelector("#run").addEventListener("click", () => {
     let result = [];
     for (let dlc in list.songs) {
@@ -88,6 +93,20 @@ document.querySelector("#run").addEventListener("click", () => {
         }
     }
     result = result.filter(song => song.hasOwnProperty("exclusive")? song["exclusive"] == mode : true);
+    if (levelCheck.checked) {
+        for (let i=0; i<result.length;) {
+            let levels = [];
+            for (let btn of btnSelect) {
+                levels = [...levels, ...Object.values(result[i]["level"][btn])];
+            }
+            if (Math.max(...levels) < levelLimit) {
+                result.splice(i, 1);
+            }
+            else {
+                i++;
+            }
+        }
+    }
 
     let rands = new Set();
     let min = Math.min(count, result.length);
@@ -96,6 +115,9 @@ document.querySelector("#run").addEventListener("click", () => {
     }
 
     resultList = [...rands].map(rand => result[rand]);
+    for (let p of document.querySelectorAll("ol p")) {
+        p.textContent = "";
+    }
     let li = document.querySelectorAll("#result li");
     for (let i=0; i<min; i++) {
         li[i].querySelectorAll("p")[0].textContent = resultList[i]["title"];
