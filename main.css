@@ -31,15 +31,6 @@ td {
 p.title {
     width: 100%;
     font-size: 1.5em;
-    text-decoration: underline;
-}
-li p {
-    margin: 3%;
-}
-li > span {
-    font-size: 0.75em;
-    color: blue;
-    margin-left: 0.5em;
 }
 
 #happy {
@@ -71,6 +62,14 @@ li > span {
 #randomResult > li {
     background-size: 100% 100%;
     color: #000;
+}
+#randomResult p {
+    margin: 3%;
+}
+#artistResult span {
+    font-size: 0.75em;
+    color: blue;
+    margin-left: 0.5em;
 }
 
 .cloud {
