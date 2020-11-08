@@ -17,9 +17,10 @@
             <label class="shadow-white"><input type="radio" name="mode" value="PC">PC</label>
             <label class="shadow-white"><input type="radio" name="mode" value="PS4">PS4</label>
             <label class="shadow-white"><input type="radio" name="mode" value="artist">작곡가별 곡 목록</label>
+            <!-- <label class="shadow-white"><input type="radio" name="mode" value="tag">장르 태그</label> -->
         </div>
         <div id="dlcSelect">
-            <table id="dlcCheckbox">
+            <table id="dlcCheckbox" class="inline">
                 <tr><td></td><td></td><td></td><td></td></tr>
                 <tr><td></td><td></td><td></td><td></td></tr>
                 <tr><td></td><td></td><td></td><td></td></tr>
@@ -46,8 +47,13 @@
     </div>
     <div id="pick"><button type="button" id="run" disabled>로딩...</button></div>
     <div id="result">
-        <ol></ol>
-        <ul></ul>
+        <ol id="randomResult"></ol>
+        <button type="button" id="spread">모두 펼치기</button>
+        <button type="button" id="collpase">모두 접기</button>
+        <ul id="artistResult"></ul>
+        <!-- <div id="tag">
+
+        </div> -->
     </div>
     <script type="text/javascript" src="main.js"></script>
 </body>

@@ -34,7 +34,7 @@ fetch("list.json").then(response => response.json())
     document.querySelectorAll("#modeSelect input")[0].click();
 });
 
-let ol = document.querySelector("#result ol");
+let ol = document.querySelector("#randomResult");
 for (let i=0; i<count; i++) {
     let li = document.createElement("li");
     li.className = "left";
@@ -50,10 +50,13 @@ for (let i=0; i<count; i++) {
 for (let radio of document.querySelectorAll("#modeSelect input")) {
     radio.addEventListener("change", event => {
         mode = event.target.value;
+        setDisplay(mode == "PC" || mode == "PS4", "block", document.querySelector("#dlcSelect"), document.querySelector("#levelSelect"), document.querySelector("#pick"), document.querySelector("#randomResult"));
         setDisplay(mode == "PS4", "inline", document.querySelector("#소녀전선"));
-        setDisplay(mode != "artist", "block", document.querySelector("#dlcSelect"), document.querySelector("#levelSelect"), document.querySelector("#pick"), document.querySelector("ol"));
-        let ul = document.querySelector("ul");
+        let ul = document.querySelector("#artistResult");
         setDisplay(mode == "artist", "block", ul);
+        setDisplay(mode == "artist", "inline", ...document.querySelectorAll("#result > button"));
+        // let tag = document.querySelector("#tag");
+        // setDisplay(mode == "tag", "block", tag);
         
         if (mode == "PC") {
             dlcSelect.delete("소녀전선");
@@ -63,7 +66,7 @@ for (let radio of document.querySelectorAll("#modeSelect input")) {
                 dlcSelect.add("소녀전선");
             }
         }
-        else if (mode == "artist" && !ul.hasChildNodes()) {
+        else if (mode == "artist" && !ul.querySelector("li")) {
             let songs = Object.values(list.songs).reduce((a,b) => [...a, ...b]);
             let artists = [...new Set(songs.map(song => song["artist"]))].sort();
 
@@ -98,6 +101,13 @@ for (let radio of document.querySelectorAll("#modeSelect input")) {
                 }
             }
         }
+        // else if (mode == "tag" && !tag.hasChildNodes()) {
+        //     for (let t of list.tags) {
+        //         let span = document.createElement("span");
+        //         span.textContent = t;
+        //         tag.appendChild(span);
+        //     }
+        // }
     });
 }
 
@@ -128,14 +138,13 @@ document.querySelector("#gtr_equal").addEventListener("change", event => {
 document.querySelector("#gtr_equal").value = "gtr";
 document.querySelector("#gtr_equal").dispatchEvent(new InputEvent("change"));
 
-
 document.querySelector("#run").addEventListener("click", () => {
     let result = [];
     for (let dlc of dlcSelect) {
         result = [...result, ...list.songs[dlc]];
     }
-    console.log(result)
     result = result.filter(song => song.hasOwnProperty("exclusive")? song["exclusive"] == mode : true);
+    
     if (levelCheck.checked) {
         for (let i=0; i<result.length;) {
             let levels = [];
@@ -171,7 +180,7 @@ document.querySelector("#run").addEventListener("click", () => {
     }
 
     resultList = [...rands].map(rand => result[rand]);
-    for (let p of document.querySelectorAll("ol p")) {
+    for (let p of document.querySelectorAll("#randomResult p")) {
         p.textContent = "";
     }
     let li = document.querySelectorAll("#result li");
@@ -183,6 +192,21 @@ document.querySelector("#run").addEventListener("click", () => {
         }
         p[1].textContent = resultList[i]["artist"];
     }
+});
+
+document.querySelector("#spread").addEventListener("click", () => {
+    document.querySelectorAll("#artistResult > li").forEach(li => {
+        if (li.querySelector("span").textContent == "▼") {
+            li.dispatchEvent(new MouseEvent("click"));
+        }
+    });
+});
+document.querySelector("#collpase").addEventListener("click", () => {
+    document.querySelectorAll("#artistResult > li").forEach(li => {
+        if (li.querySelector("span").textContent == "▲") {
+            li.dispatchEvent(new MouseEvent("click"));
+        }
+    });
 });
 
 function setDisplay(condition, display, ...element) {
