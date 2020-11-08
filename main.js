@@ -64,10 +64,7 @@ for (let radio of document.querySelectorAll("#modeSelect input")) {
             }
         }
         else if (mode == "artist" && !ul.hasChildNodes()) {
-            let songs = [];
-            for (let dlc in list.songs) {
-                songs = [...songs, ...list.songs[dlc]];
-            }
+            let songs = Object.values(list.songs).reduce((a,b) => [...a, ...b]);
             let artists = [...new Set(songs.map(song => song["artist"]))].sort();
 
             for (let artist of artists) {
@@ -134,11 +131,10 @@ document.querySelector("#gtr_equal").dispatchEvent(new InputEvent("change"));
 
 document.querySelector("#run").addEventListener("click", () => {
     let result = [];
-    for (let dlc in list.songs) {
-        if (dlcSelect.has(dlc)) {
-            result = [...result, ...list.songs[dlc]];
-        }
+    for (let dlc of dlcSelect) {
+        result = [...result, ...list.songs[dlc]];
     }
+    console.log(result)
     result = result.filter(song => song.hasOwnProperty("exclusive")? song["exclusive"] == mode : true);
     if (levelCheck.checked) {
         for (let i=0; i<result.length;) {
