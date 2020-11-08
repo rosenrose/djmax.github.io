@@ -204,6 +204,9 @@ document.querySelector("#run").addEventListener("click", () => {
     }
 
     resultList = [...rands].map(rand => result[rand]);
+    if (resultList.length == 0) {
+        alert("결과가 없습니다.");
+    }
     let li = document.querySelectorAll("#result li");
     for (let i=0; i<count; i++) {
         let p = li[i].querySelectorAll("p");
