@@ -177,7 +177,7 @@ document.querySelector("#run").addEventListener("click", () => {
                 }
             }
             else if (levelCondition == "lss") {
-                if (Math.min(...levels) > levelLimit) {
+                if (Math.max(...levels) > levelLimit) {
                     result.splice(i, 1);
                 }
                 else {
