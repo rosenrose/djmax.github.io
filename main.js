@@ -155,7 +155,7 @@ document.querySelector("#gtr_equal").dispatchEvent(new InputEvent("change"));
 document.querySelector("#run").addEventListener("click", () => {
     let result = [];
     for (let dlc of dlcSelect) {
-        result = [...result, ...list.songs[dlc].map(song => {
+        result = [...result, ...JSON.parse(JSON.stringify(list.songs[dlc])).map(song => {
             if(!song.hasOwnProperty("game")) song["game"] = dlc;
             return song;})];
     }
