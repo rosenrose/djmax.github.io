@@ -42,9 +42,10 @@ p.title {
 li p {
     margin: 3%;
 }
-a:link, a:visited {
-    text-decoration: none;
-    color: #000;
+li > span {
+    font-size: 0.75em;
+    color: blue;
+    margin-left: 0.5em;
 }
 
 #happy {

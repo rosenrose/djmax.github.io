@@ -73,16 +73,19 @@ for (let radio of document.querySelectorAll("#modeSelect input")) {
             for (let artist of artists) {
                 let li = document.createElement("li");
                 li.className = "left";
-                li.innerHTML = artist + `<span style="font-size: 0.75em; color: blue;"> ▼<span/>`;
+                li.textContent = artist;
+                let span = document.createElement("span");
+                span.textContent = "▼";
+                li.appendChild(span);
                 li.addEventListener("click", event => {
                     let text = event.target.querySelector("span").textContent;
-                    if (text.endsWith("▼")) {
+                    if (text == "▼") {
                         event.target.querySelector("ul").style.display = "block";
-                        event.target.querySelector("span").textContent = " ▲";
+                        event.target.querySelector("span").textContent = "▲";
                     }
-                    else if (text.endsWith("▲")) {
+                    else if (text == "▲") {
                         event.target.querySelector("ul").style.display = "none";
-                        event.target.querySelector("span").textContent = " ▼";
+                        event.target.querySelector("span").textContent = "▼";
                     }
                 });
                 ul.appendChild(li);
