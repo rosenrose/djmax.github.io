@@ -50,7 +50,7 @@ li > span {
 }
 #result {
     padding: 1%;
-    background-color: #fff;
+    background-color: #eee;
     border-radius: 2em;
     width: 35%;
     margin: auto;
@@ -66,7 +66,19 @@ li > span {
     width: 3.5em;
 }
 #randomResult, #artistResult {
-    padding-left: 15%;
+    padding-left: 10%;
+}
+#randomResult > li {
+    background-size: 100% 100%;
+    color: #000;
+}
+
+.cloud {
+    background-color: skyblue;
+    border-radius: 0.75em;
+    margin: 0.25em;
+    padding: 0.25em;
+    float: left;
 }
 
 @media ( max-width: 768px ) {

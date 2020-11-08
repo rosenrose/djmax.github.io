@@ -2,6 +2,19 @@ dlcSelect = new Set();
 btnSelect = new Set();
 levelLimit = 0;
 const count = 10;
+colorMapping = {"리스펙트": "color_respect.png",
+                "포터블 1": "color_portable1.png",
+                "포터블 2": "color_portable2.png",
+                "트릴로지": "color_trilogy.png",
+                "클래지콰이": "color_clazziquai.png",
+                "블랙 스퀘어": "color_blacksquare.png",
+                "브이 익스텐션": "color_vextension.png",
+                "이모셔널 센스": "color_emotionalsense.png",
+                "테크니카 1": "color_technika1.png",
+                "테크니카 2": "color_technika2.png",
+                "테크니카 3": "color_technika3.png",
+                "콜라보": "color_collaboration.png"};
+collaboration = ["길티기어", "소녀전선", "그루브 코스터", "디모", "사이터스"];
 
 fetch("list.json").then(response => response.json())
 .then(json => {
@@ -101,10 +114,11 @@ for (let radio of document.querySelectorAll("#modeSelect input")) {
                 }
             }
         }
-        // else if (mode == "tag" && !tag.hasChildNodes()) {
+        // else if (mode == "tag" && !tag.querySelector("span")) {
         //     for (let t of list.tags) {
         //         let span = document.createElement("span");
         //         span.textContent = t;
+        //         span.className = "cloud";
         //         tag.appendChild(span);
         //     }
         // }
@@ -141,7 +155,7 @@ document.querySelector("#gtr_equal").dispatchEvent(new InputEvent("change"));
 document.querySelector("#run").addEventListener("click", () => {
     let result = [];
     for (let dlc of dlcSelect) {
-        result = [...result, ...list.songs[dlc]];
+        result = [...result, ...list.songs[dlc].map(song => {song["game"] = dlc; return song;})];
     }
     result = result.filter(song => song.hasOwnProperty("exclusive")? song["exclusive"] == mode : true);
     
@@ -180,10 +194,15 @@ document.querySelector("#run").addEventListener("click", () => {
     }
 
     resultList = [...rands].map(rand => result[rand]);
-    for (let p of document.querySelectorAll("#randomResult p")) {
-        p.textContent = "";
-    }
     let li = document.querySelectorAll("#result li");
+    for (let i=0; i<count; i++) {
+        let p = li[i].querySelectorAll("p");
+        p[0].textContent = "";
+        p[1].textContent = "";
+        p[0].style.color = "";
+        p[1].style.color = "";
+        li[i].style.backgroundImage = "";
+    }
     for (let i=0; i<min; i++) {
         let p = li[i].querySelectorAll("p");
         p[0].textContent = resultList[i]["title"];
@@ -191,6 +210,18 @@ document.querySelector("#run").addEventListener("click", () => {
             p[0].textContent += ` (${resultList[i]["equal"]})`
         }
         p[1].textContent = resultList[i]["artist"];
+
+        let game = resultList[i]["game"];
+        if (game != "클래지콰이") {
+            p[0].style.color = "#fff";
+            p[1].style.color = "#fff";
+        }
+        if (collaboration.includes(game)) {
+            li[i].style.backgroundImage = `url(${colorMapping["콜라보"]})`;
+        }
+        else {
+            li[i].style.backgroundImage = `url(${colorMapping[game]})`;
+        }
     }
 });
 
