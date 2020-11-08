@@ -51,14 +51,51 @@ for (let radio of document.querySelectorAll("#modeSelect input")) {
     radio.addEventListener("change", event => {
         mode = event.target.value;
         setDisplay(mode == "PS4", "inline", document.querySelector("#소녀전선"));
-        setDisplay(mode != "artist", "block", document.querySelector("#dlcSelect"), document.querySelector("#pick"), document.querySelector("#result"));
-
+        setDisplay(mode != "artist", "block", document.querySelector("#dlcSelect"), document.querySelector("#levelSelect"), document.querySelector("#pick"), document.querySelector("ol"));
+        let ul = document.querySelector("ul");
+        setDisplay(mode == "artist", "block", ul);
+        
         if (mode == "PC") {
             dlcSelect.delete("소녀전선");
         }
         else if (mode == "PS4") {
             if (document.querySelector("#소녀전선 input").checked) {
                 dlcSelect.add("소녀전선");
+            }
+        }
+        else if (mode == "artist" && !ul.hasChildNodes()) {
+            let songs = [];
+            for (let dlc in list.songs) {
+                songs = [...songs, ...list.songs[dlc]];
+            }
+            let artists = [...new Set(songs.map(song => song["artist"]))].sort();
+
+            for (let artist of artists) {
+                let li = document.createElement("li");
+                li.className = "left";
+                li.innerHTML = artist + `<span style="font-size: 0.75em; color: blue;"> ▼<span/>`;
+                li.addEventListener("click", event => {
+                    let text = event.target.querySelector("span").textContent;
+                    if (text.endsWith("▼")) {
+                        event.target.querySelector("ul").style.display = "block";
+                        event.target.querySelector("span").textContent = " ▲";
+                    }
+                    else if (text.endsWith("▲")) {
+                        event.target.querySelector("ul").style.display = "none";
+                        event.target.querySelector("span").textContent = " ▼";
+                    }
+                });
+                ul.appendChild(li);
+
+                let titles = songs.filter(song => song["artist"] == artist).map(song => song["title"]).sort();
+                let second_ul = document.createElement("ul");
+                second_ul.style.display = "none";
+                li.appendChild(second_ul);
+                for (let title of titles) {
+                    let second_li = document.createElement("li");
+                    second_li.textContent = title;
+                    second_ul.appendChild(second_li);
+                }
             }
         }
     });
