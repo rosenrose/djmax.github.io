@@ -146,11 +146,11 @@ document.querySelector("#levelInput").addEventListener("change", event => {
     levelLimit = parseInt(event.target.value);
 });
 
-document.querySelector("#gtr_equal").addEventListener("change", event => {
-    gtr_equal = event.target.value;
+document.querySelector("#levelContidion").addEventListener("change", event => {
+    levelContidion = event.target.value;
 });
-document.querySelector("#gtr_equal").value = "gtr";
-document.querySelector("#gtr_equal").dispatchEvent(new InputEvent("change"));
+document.querySelector("#levelContidion").value = "gtr";
+document.querySelector("#levelContidion").dispatchEvent(new InputEvent("change"));
 
 document.querySelector("#run").addEventListener("click", () => {
     let result = [];
@@ -168,7 +168,7 @@ document.querySelector("#run").addEventListener("click", () => {
                 levels = [...levels, ...Object.values(result[i]["level"][btn])];
             }
 
-            if (gtr_equal == "gtr") {
+            if (levelContidion == "gtr") {
                 if (Math.max(...levels) < levelLimit) {
                     result.splice(i, 1);
                 }
@@ -176,7 +176,15 @@ document.querySelector("#run").addEventListener("click", () => {
                     i++;
                 }
             }
-            else if (gtr_equal == "equal") {
+            else if (levelContidion == "lss") {
+                if (Math.min(...levels) > levelLimit) {
+                    result.splice(i, 1);
+                }
+                else {
+                    i++;
+                }
+            }
+            else if (levelContidion == "equal") {
                 if (!levels.includes(levelLimit)) {
                     result.splice(i, 1);
                 }
