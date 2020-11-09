@@ -33,9 +33,6 @@ p.title {
     font-size: 1.5em;
 }
 
-.so_happy {
-    width: 10%;
-}
 .cloud {
     background-color: skyblue;
     border-radius: 0.75em;
@@ -44,6 +41,9 @@ p.title {
     float: left;
 }
 
+#so_happy {
+    width: 50%;
+}
 #intro {
     font-size: 1.2em;
 }
@@ -84,10 +84,7 @@ p.title {
     body {
         background-size: contain;
     }
-    .so_happy {
-        width: 32%;
-    }
-    #result {
+    #so_happy, #result {
         width: 100%;
     }
 }
