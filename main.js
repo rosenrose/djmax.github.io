@@ -24,7 +24,7 @@ fetch("list.json").then(response => response.json())
     
     let dlcCheck = document.querySelectorAll("#dlcCheckbox td")
     for (let i=0; i<dlcCheck.length; i++) {
-        let dlc = Object.keys(list.songs)[i];
+        let dlc = Object.keys(list)[i];
         let label = document.createElement("label");
         label.className = "shadow-white";
         label.id = dlc.replace(" ","_");
@@ -80,7 +80,7 @@ for (let radio of document.querySelectorAll("#modeSelect input")) {
             }
         }
         else if (mode == "artist" && !ul.querySelector("li")) {
-            let songs = Object.values(list.songs).reduce((a,b) => [...a, ...b]);
+            let songs = Object.values(list).reduce((a,b) => [...a, ...b]);
             let artists = [...new Set(songs.map(song => song["artist"]))].sort();
 
             for (let artist of artists) {
@@ -114,14 +114,10 @@ for (let radio of document.querySelectorAll("#modeSelect input")) {
                 }
             }
         }
-        // else if (mode == "tag" && !tag.querySelector("span")) {
-        //     for (let t of list.tags) {
-        //         let span = document.createElement("span");
-        //         span.textContent = t;
-        //         span.className = "cloud";
-        //         tag.appendChild(span);
-        //     }
-        // }
+        else if (mode == "tag" && !document.querySelector("#tag span")) {
+            tags = Object.values(list).reduce((a,b) => [...a, ...b]).map(song => song["genre"]).filter(song => song!=null);
+            tags = [...new Set(tags.reduce((a,b) => a+" "+b).split(" "))].sort();
+        }
     });
 }
 
@@ -155,7 +151,7 @@ document.querySelector("#levelCondition").dispatchEvent(new InputEvent("change")
 document.querySelector("#run").addEventListener("click", () => {
     let result = [];
     for (let dlc of dlcSelect) {
-        result = [...result, ...JSON.parse(JSON.stringify(list.songs[dlc])).map(song => {
+        result = [...result, ...JSON.parse(JSON.stringify(list[dlc])).map(song => {
             if(!song.hasOwnProperty("game")) song["game"] = dlc;
             return song;})];
     }
