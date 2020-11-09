@@ -33,9 +33,17 @@ p.title {
     font-size: 1.5em;
 }
 
-#happy {
-    width: 50%;
+.so_happy {
+    width: 10%;
 }
+.cloud {
+    background-color: skyblue;
+    border-radius: 0.75em;
+    margin: 0.25em;
+    padding: 0.25em;
+    float: left;
+}
+
 #intro {
     font-size: 1.2em;
 }
@@ -72,19 +80,14 @@ p.title {
     margin-left: 0.5em;
 }
 
-.cloud {
-    background-color: skyblue;
-    border-radius: 0.75em;
-    margin: 0.25em;
-    padding: 0.25em;
-    float: left;
-}
-
 @media ( max-width: 768px ) {
     body {
         background-size: contain;
     }
-    #happy, #result {
+    .so_happy {
+        width: 32%;
+    }
+    #result {
         width: 100%;
     }
 }
