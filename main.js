@@ -222,7 +222,7 @@ document.querySelector("#run").addEventListener("click", () => {
             src = `${src} (${resultList[i]["artist"]})`;
         }
         if (game != "소녀전선") {
-            img.src = `song_pic/${src}.png`;
+            img.src = `song_pic/${src}_${getRandomInt(1,4)}.png`;
         }
         
         let p = li[i].querySelectorAll("p");
