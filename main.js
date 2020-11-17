@@ -51,10 +51,13 @@ let ol = document.querySelector("#randomResult");
 for (let i=0; i<count; i++) {
     let li = document.createElement("li");
     li.className = "left";
+    let img = document.createElement("img");
+    img.className = "song_pic";
     let title = document.createElement("p");
     title.className = "title";
     let artist = document.createElement("p");
     artist.className = "artist";
+    li.appendChild(img);
     li.appendChild(title);
     li.appendChild(artist);
     ol.appendChild(li);
@@ -202,6 +205,7 @@ document.querySelector("#run").addEventListener("click", () => {
     }
     let li = document.querySelectorAll("#result li");
     for (let i=0; i<count; i++) {
+        li[i].querySelector("img").src = "";
         let p = li[i].querySelectorAll("p");
         p[0].textContent = "";
         p[1].textContent = "";
@@ -210,14 +214,24 @@ document.querySelector("#run").addEventListener("click", () => {
         li[i].style.backgroundImage = "";
     }
     for (let i=0; i<min; i++) {
+        let game = resultList[i]["game"];
+        let img = li[i].querySelector("img");
+
+        let src = resultList[i]["title"].replace("/","／").replace(":","：").replace("?","？");
+        if (resultList[i]["title"] == "Urban Night") {
+            src = `${src} (${resultList[i]["artist"]})`;
+        }
+        if (game != "소녀전선") {
+            img.src = `song_pic/${src}.png`;
+        }
+        
         let p = li[i].querySelectorAll("p");
         p[0].textContent = resultList[i]["title"];
         if (resultList[i].hasOwnProperty("equal")) {
             p[0].textContent += ` (${resultList[i]["equal"]})`
         }
         p[1].textContent = resultList[i]["artist"];
-
-        let game = resultList[i]["game"];
+        
         if (game != "클래지콰이") {
             p[0].style.color = "#fff";
             p[1].style.color = "#fff";

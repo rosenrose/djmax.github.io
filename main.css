@@ -28,10 +28,6 @@ div {
 td {
     width: 25%;
 }
-p.title {
-    width: 100%;
-    font-size: 1.5em;
-}
 
 .cloud {
     background-color: skyblue;
@@ -39,6 +35,11 @@ p.title {
     margin: 0.25em;
     padding: 0.25em;
     float: left;
+}
+.song_pic {
+    float: left;
+    height: 100%;
+    margin-right: 0.5em;
 }
 
 #so_happy {
@@ -68,11 +69,21 @@ p.title {
     padding-left: 10%;
 }
 #randomResult > li {
+    margin: 2%;
+    height: 4.5em;
     background-size: 100% 100%;
     color: #000;
 }
 #randomResult p {
-    margin: 3%;
+    margin: 0;
+}
+#randomResult p.title {
+    font-size: 1.5em;
+    height: 50%;
+}
+#randomResult p.artist {
+    height: 50%;
+    padding-top: 2%;
 }
 #artistResult span {
     font-size: 0.75em;
@@ -86,5 +97,12 @@ p.title {
     }
     #so_happy, #result {
         width: 100%;
+    }
+    #randomResult p.title {
+        font-size: 1.1em;
+    }
+    #randomResult p.artist {
+        font-size: 0.8em;
+        padding-top: 4%;
     }
 }
