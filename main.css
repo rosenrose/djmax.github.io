@@ -37,9 +37,13 @@ td {
     float: left;
 }
 .song_pic {
-    float: left;
     height: 100%;
-    margin-right: 0.5em;
+}
+.title_artist {
+    background-size: 100% 100%;
+    height: 100%;
+    padding-left: 0.5em;
+    flex-grow: 1;
 }
 
 #so_happy {
@@ -62,8 +66,11 @@ td {
 #levelSelect div, #range {
     display: none;
 }
-#levelInput {
+#levelInput, #levelInput2 {
     width: 3.5em;
+}
+#resultCountInput {
+    width: 2.5em;
 }
 #artistResult {
     margin-left: 10%;
@@ -71,8 +78,8 @@ td {
 #randomResult > li {
     margin: 2%;
     height: 4.5em;
-    background-size: 100% 100%;
     color: #000;
+    display: flex;
 }
 #randomResult p {
     margin: 0;
@@ -98,7 +105,7 @@ td {
     #so_happy, #result {
         width: 100%;
     }
-    #randomResult {
+    #randomResult, #artistResult {
         margin-left: -5%;
     }
     #randomResult p.title {

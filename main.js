@@ -2,7 +2,8 @@ dlcSelect = new Set();
 btnSelect = new Set();
 rankSelect = new Set();
 levelLimit = 0;
-const count = 10;
+const maxCount = 10;
+count = 10;
 colorMapping = {"리스펙트": "color_respect.png",
                 "포터블 1": "color_portable1.png",
                 "포터블 2": "color_portable2.png",
@@ -46,6 +47,41 @@ fetch("list.json").then(response => response.json())
         label.click();
     }
     document.querySelectorAll("#modeSelect input")[0].click();
+
+    let songs = Object.values(list).reduce((a,b) => [...a, ...b]);
+    let artists = [...new Set(songs.map(song => song["artist"]))].sort();
+    for (let artist of artists) {
+        let li = document.createElement("li");
+        li.className = "left";
+        li.textContent = artist;
+        let span = document.createElement("span");
+        span.textContent = "▼";
+        li.appendChild(span);
+        li.addEventListener("click", event => {
+            let text = event.target.querySelector("span").textContent;
+            if (text == "▼") {
+                event.target.querySelector("ul").style.display = "block";
+                event.target.querySelector("span").textContent = "▲";
+            }
+            else if (text == "▲") {
+                event.target.querySelector("ul").style.display = "none";
+                event.target.querySelector("span").textContent = "▼";
+            }
+        });
+        document.querySelector("#artistResult").appendChild(li);
+
+        let titles = songs.filter(song => song["artist"] == artist).map(song => song["title"]).sort();
+        let second_ul = document.createElement("ul");
+        second_ul.style.display = "none";
+        li.appendChild(second_ul);
+        for (let title of titles) {
+            let second_li = document.createElement("li");
+            second_li.textContent = title;
+            second_ul.appendChild(second_li);
+        }
+    }
+    tags = songs.map(song => song["genre"]).filter(song => song!=null);
+    tags = [...new Set(tags.reduce((a,b) => a+" "+b).split(" "))].sort();
 });
 
 let ol = document.querySelector("#randomResult");
@@ -54,24 +90,26 @@ for (let i=0; i<count; i++) {
     li.className = "left";
     let img = document.createElement("img");
     img.className = "song_pic";
+    let div = document.createElement("div");
+    div.className = "title_artist";
     let title = document.createElement("p");
     title.className = "title";
     let artist = document.createElement("p");
     artist.className = "artist";
+    div.appendChild(title);
+    div.appendChild(artist);
     li.appendChild(img);
-    li.appendChild(title);
-    li.appendChild(artist);
+    li.appendChild(div);
     ol.appendChild(li);
 }
 
 for (let radio of document.querySelectorAll("#modeSelect input")) {
     radio.addEventListener("change", event => {
         mode = event.target.value;
-        setDisplay(mode == "PC" || mode == "PS4", "block", document.querySelector("#dlcSelect"), document.querySelector("#levelSelect"), document.querySelector("#pick"), document.querySelector("#randomResult"));
+        setDisplay(mode == "PC" || mode == "PS4", "block", ...document.querySelectorAll("#dlcSelect, #levelSelect, #pick, #randomResult, #resultCount"));
         setDisplay(mode == "PC", "inline", document.querySelectorAll("#rankSelect label")[3]);
         setDisplay(mode == "PS4", "inline", document.querySelector("#소녀전선"));
-        let ul = document.querySelector("#artistResult");
-        setDisplay(mode == "artist", "block", ul);
+        setDisplay(mode == "artist", "block", document.querySelector("#artistResult"));
         setDisplay(mode == "artist", "inline", ...document.querySelectorAll("#result > button"));
         // let tag = document.querySelector("#tag");
         // setDisplay(mode == "tag", "block", tag);
@@ -87,45 +125,6 @@ for (let radio of document.querySelectorAll("#modeSelect input")) {
                 dlcSelect.add("소녀전선");
             }
             rankSelect.delete("SC");
-        }
-        else if (mode == "artist" && !ul.querySelector("li")) {
-            let songs = Object.values(list).reduce((a,b) => [...a, ...b]);
-            let artists = [...new Set(songs.map(song => song["artist"]))].sort();
-
-            for (let artist of artists) {
-                let li = document.createElement("li");
-                li.className = "left";
-                li.textContent = artist;
-                let span = document.createElement("span");
-                span.textContent = "▼";
-                li.appendChild(span);
-                li.addEventListener("click", event => {
-                    let text = event.target.querySelector("span").textContent;
-                    if (text == "▼") {
-                        event.target.querySelector("ul").style.display = "block";
-                        event.target.querySelector("span").textContent = "▲";
-                    }
-                    else if (text == "▲") {
-                        event.target.querySelector("ul").style.display = "none";
-                        event.target.querySelector("span").textContent = "▼";
-                    }
-                });
-                ul.appendChild(li);
-
-                let titles = songs.filter(song => song["artist"] == artist).map(song => song["title"]).sort();
-                let second_ul = document.createElement("ul");
-                second_ul.style.display = "none";
-                li.appendChild(second_ul);
-                for (let title of titles) {
-                    let second_li = document.createElement("li");
-                    second_li.textContent = title;
-                    second_ul.appendChild(second_li);
-                }
-            }
-        }
-        else if (mode == "tag" && !document.querySelector("#tag span")) {
-            tags = Object.values(list).reduce((a,b) => [...a, ...b]).map(song => song["genre"]).filter(song => song!=null);
-            tags = [...new Set(tags.reduce((a,b) => a+" "+b).split(" "))].sort();
         }
     });
 }
@@ -227,25 +226,24 @@ document.querySelector("#run").addEventListener("click", () => {
         alert("결과가 없습니다.");
     }
     let li = document.querySelectorAll("#result li");
-    for (let i=0; i<count; i++) {
+    for (let i=0; i<maxCount; i++) {
         li[i].querySelector("img").src = "";
         let p = li[i].querySelectorAll("p");
         p[0].textContent = "";
         p[1].textContent = "";
         p[0].style.color = "";
         p[1].style.color = "";
-        li[i].style.backgroundImage = "";
+        li[i].querySelector("div").style.backgroundImage = "";
     }
     for (let i=0; i<min; i++) {
         let game = resultList[i]["game"];
-        let img = li[i].querySelector("img");
 
         let src = resultList[i]["title"].replace("/","／").replace(":","：").replace("?","？");
         if (resultList[i]["title"] == "Urban Night") {
             src = `${src} (${resultList[i]["artist"]})`;
         }
         if (game != "소녀전선") {
-            img.src = `song_pic/${src}_${getRandomInt(1,4)}.png`;
+            li[i].querySelector("img").src = `song_pic/${src}_${getRandomInt(1,4)}.png`;
         }
         
         let p = li[i].querySelectorAll("p");
@@ -259,13 +257,12 @@ document.querySelector("#run").addEventListener("click", () => {
             p[0].style.color = "#fff";
             p[1].style.color = "#fff";
         }
-        if (collaboration.includes(game)) {
-            li[i].style.backgroundImage = `url(${colorMapping["콜라보"]})`;
-        }
-        else {
-            li[i].style.backgroundImage = `url(${colorMapping[game]})`;
-        }
+        li[i].querySelector("div").style.backgroundImage = (collaboration.includes(game))? `url(${colorMapping["콜라보"]})` : `url(${colorMapping[game]})`;
     }
+});
+
+document.querySelector("#resultCountInput").addEventListener("change", event => {
+    count = parseInt(event.target.value);
 });
 
 document.querySelector("#spread").addEventListener("click", () => {
@@ -284,14 +281,9 @@ document.querySelector("#collpase").addEventListener("click", () => {
 });
 
 function setDisplay(condition, display, ...element) {
-    for (let elem of element) {
-        if (condition) {
-            elem.style.display = display;
-        }
-        else {
-            elem.style.display = "none";
-        }
-    }
+    element.forEach(elem => {
+        elem.style.display = (condition)? display : "none";
+    });
 }
 
 function getLevels(level) {
