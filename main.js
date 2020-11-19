@@ -195,10 +195,10 @@ document.querySelector("#run").addEventListener("click", () => {
         result = result.filter(song => {
             let levels = getLevels(song["level"]);
             if (levelCondition == "gtr") {
-                return (Math.max(...levels) < levelLimit)? false : true;
+                return (Math.max(...levels) >= levelLimit);
             }
             else if (levelCondition == "lss") {
-                return (Math.max(...levels) > levelLimit)? false : true;
+                return (Math.max(...levels) <= levelLimit);
             }
             else if (levelCondition == "equal") {
                 if (levels.includes(levelLimit)) {
@@ -210,7 +210,7 @@ document.querySelector("#run").addEventListener("click", () => {
                 }
             }
             else if (levelCondition == "range") {
-                return (levels.filter(level => (level >= levelLimit) && (level <= levelLimit2)).length)? true : false;
+                return (levels.filter(level => (level >= levelLimit) && (level <= levelLimit2)).length > 0);
             }
         });
     }
@@ -297,8 +297,8 @@ function setDisplay(condition, display, ...element) {
 function getLevels(level) {
     let result = [];
     for (let btn of btnSelect) {
-        for (let rank of rankSelect) {
-            if (mode == "PS4" && rank == "SC") {
+        for (let rank in level[btn]) {
+            if (!rankSelect.has(rank)) {
                 continue;
             }
             result.push(level[btn][rank]);
@@ -310,8 +310,8 @@ function getLevels(level) {
 function getExactLevel(level, num) {
     let result = [];
     for (let btn of btnSelect) {
-        for (let rank of rankSelect) {
-            if (mode == "PS4" && rank == "SC") {
+        for (let rank in level[btn]) {
+            if (!rankSelect.has(rank)) {
                 continue;
             }
             if (level[btn][rank] == num) {
