@@ -45,6 +45,22 @@ td {
     padding-left: 0.5em;
     flex-grow: 1;
 }
+/* .NM {
+    border-radius: 0.3em;
+    background-color: rgb(255,186,0);
+}
+.HD {
+    border-radius: 0.3em;
+    background-color: rgb(255,126,49);
+}
+.MX {
+    border-radius: 0.3em;
+    background-color: rgb(255,30,30);
+}
+.SC {
+    border-radius: 0.3em;
+    background-color: rgb(242,28,199);
+} */
 
 #so_happy {
     width: 50%;
@@ -77,20 +93,25 @@ td {
 }
 #randomResult > li {
     margin: 2%;
-    height: 4.5em;
+    height: 5em;
     color: #000;
     display: flex;
 }
 #randomResult p {
     margin: 0;
 }
-#randomResult p.title {
-    font-size: 1.5em;
-    height: 50%;
+#randomResult span {
+    padding: 0;
 }
-#randomResult p.artist {
-    height: 50%;
-    padding-top: 2%;
+#randomResult .title {
+    font-size: 1.5em;
+    height: 70%;
+}
+#randomResult .pattern {
+    font-size: 0.7em;
+}
+#randomResult .artist {
+    height: 30%;
 }
 #artistResult span {
     font-size: 0.75em;
@@ -108,11 +129,14 @@ td {
     #randomResult, #artistResult {
         margin-left: -5%;
     }
-    #randomResult p.title {
+    #randomResult .title {
         font-size: 1.1em;
     }
-    #randomResult p.artist {
+    #randomResult .artist {
         font-size: 0.8em;
-        padding-top: 4%;
+        padding-top: 3%;
+    }
+    #randomResult .pattern {
+        font-size: 0.6em;
     }
 }

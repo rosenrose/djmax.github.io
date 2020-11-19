@@ -2,8 +2,9 @@ dlcSelect = new Set();
 btnSelect = new Set();
 rankSelect = new Set();
 levelLimit = 0;
-const maxCount = 10;
+levelLimit2 = 0;
 count = 10;
+const maxCount = 10;
 colorMapping = {"리스펙트": "color_respect.png",
                 "포터블 1": "color_portable1.png",
                 "포터블 2": "color_portable2.png",
@@ -85,7 +86,7 @@ fetch("list.json").then(response => response.json())
 });
 
 let ol = document.querySelector("#randomResult");
-for (let i=0; i<count; i++) {
+for (let i=0; i<maxCount; i++) {
     let li = document.createElement("li");
     li.className = "left";
     let img = document.createElement("img");
@@ -131,7 +132,7 @@ for (let radio of document.querySelectorAll("#modeSelect input")) {
 
 let levelCheck = document.querySelector("#levelCheck");
 levelCheck.addEventListener("change", event => {
-    setDisplay(event.target.checked, "block", ...document.querySelectorAll("#levelSelect > div"))
+    setDisplay(event.target.checked, "block", document.querySelector("#levelSelect > div"))
 });
 
 for (let check of document.querySelectorAll("#buttonSelect input")) {
@@ -192,24 +193,13 @@ document.querySelector("#run").addEventListener("click", () => {
     
     if (levelCheck.checked) {
         result = result.filter(song => {
-            let levels = getLevels(song["level"]);
-            if (levelCondition == "gtr") {
-                return (Math.max(...levels) >= levelLimit);
+            let pattern = getPatterns(song["level"], levelLimit, levelLimit2);
+            if (pattern.length) {
+                song["pattern"] = pattern;
+                return true;
             }
-            else if (levelCondition == "lss") {
-                return (Math.max(...levels) <= levelLimit);
-            }
-            else if (levelCondition == "equal") {
-                if (levels.includes(levelLimit)) {
-                    song["equal"] = getExactLevel(song["level"], levelLimit);
-                    return true;
-                }
-                else {
-                    return false;
-                }
-            }
-            else if (levelCondition == "range") {
-                return (levels.filter(level => (level >= levelLimit) && (level <= levelLimit2)).length > 0);
+            else {
+                return false;
             }
         });
     }
@@ -248,8 +238,20 @@ document.querySelector("#run").addEventListener("click", () => {
         
         let p = li[i].querySelectorAll("p");
         p[0].textContent = resultList[i]["title"];
-        if (resultList[i].hasOwnProperty("equal")) {
-            p[0].textContent += ` (${resultList[i]["equal"]})`
+        if (resultList[i].hasOwnProperty("pattern")) {
+            let span = document.createElement("span");
+            span.textContent = " (";
+            span.className = "pattern";
+            for (let j=0; j<resultList[i]["pattern"].length; j++) {
+                span.appendChild(document.createTextNode(resultList[i]["pattern"][j][0]+" "));
+                let pattern = document.createElement("span");
+                pattern.textContent = resultList[i]["pattern"][j][1];
+                pattern.className = resultList[i]["pattern"][j][1];
+                span.appendChild(pattern);
+                if (j<resultList[i]["pattern"].length-1) span.appendChild(document.createTextNode(", "));
+            }
+            span.appendChild(document.createTextNode(")"));
+            p[0].appendChild(span);
         }
         p[1].textContent = resultList[i]["artist"];
         
@@ -286,32 +288,31 @@ function setDisplay(condition, display, ...element) {
     });
 }
 
-function getLevels(level) {
+function getPatterns(level, num, num2) {
     let result = [];
     for (let btn of btnSelect) {
         for (let rank in level[btn]) {
             if (!rankSelect.has(rank)) {
                 continue;
             }
-            result.push(level[btn][rank]);
+            let value = level[btn][rank];
+            switch (levelCondition) {
+                case "gtr":
+                    if (value >= num) result.push([btn,rank]);
+                    break;
+                case "lss":
+                    if (value <= num) result.push([btn,rank]);
+                    break;
+                case "equal":
+                    if (value == num) result.push([btn,rank]);
+                    break;
+                case "range":
+                    if ((value >= num) && (value <= num2)) result.push([btn,rank]);
+                    break;
+            }
         }
     }
     return result;
-}
-
-function getExactLevel(level, num) {
-    let result = [];
-    for (let btn of btnSelect) {
-        for (let rank in level[btn]) {
-            if (!rankSelect.has(rank)) {
-                continue;
-            }
-            if (level[btn][rank] == num) {
-                result.push(btn+" "+rank);
-            }
-        }
-    }
-    return result.join(", ");
 }
 
 function getRandomInt(minInclude, maxExclude) {
