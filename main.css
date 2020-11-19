@@ -34,7 +34,10 @@ td {
     border-radius: 0.75em;
     margin: 0.25em;
     padding: 0.25em;
-    float: left;
+    display: inline-block;
+}
+.cloud:hover {
+    background-color: darkcyan;
 }
 .song_pic {
     height: 100%;

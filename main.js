@@ -49,7 +49,7 @@ fetch("list.json").then(response => response.json())
     }
     document.querySelectorAll("#modeSelect input")[0].click();
 
-    let songs = Object.values(list).reduce((a,b) => [...a, ...b]);
+    songs = Object.values(list).reduce((a,b) => [...a, ...b]);
     let artists = [...new Set(songs.map(song => song["artist"]))].sort();
     for (let artist of artists) {
         let li = document.createElement("li");
@@ -83,6 +83,23 @@ fetch("list.json").then(response => response.json())
     }
     tags = songs.map(song => song["genre"]).filter(song => song!=null);
     tags = [...new Set(tags.reduce((a,b) => a+" "+b).split(" "))].sort();
+    let tagDiv = document.querySelector("#tag");
+    for (let tag of tags) {
+        let cloud = document.createElement("div");
+        cloud.className = "cloud";
+        cloud.textContent = tag;
+        cloud.addEventListener("click", event => {
+            let result = songs.filter(song => song["genre"]!=null && song["genre"].includes(event.target.textContent)).sort((a,b) => {if(a["title"]>b["title"]) return 1; if(a["title"]<b["title"]) return -1; return 0;});
+            let list = document.querySelector("#tagResult");
+            for (let song of result) {
+                let li = document.createElement("li");
+                li.textContent = `${song["title"]} (${song["genre"]})`;
+                li.className = "left";
+                list.appendChild(li);
+            }
+        })
+        tagDiv.appendChild(cloud);
+    }
 });
 
 let ol = document.querySelector("#randomResult");
@@ -107,13 +124,12 @@ for (let i=0; i<maxCount; i++) {
 for (let radio of document.querySelectorAll("#modeSelect input")) {
     radio.addEventListener("change", event => {
         mode = event.target.value;
-        setDisplay(mode == "PC" || mode == "PS4", "block", ...document.querySelectorAll("#dlcSelect, #levelSelect, #pick, #randomResult, #resultCount"));
+        setDisplay(mode == "PC" || mode == "PS4", "block", ...document.querySelectorAll("#dlcSelect, #patternSelect, #levelSelect, #pick, #randomResult, #resultCount"));
         setDisplay(mode == "PC", "inline", document.querySelectorAll("#rankSelect label")[3]);
         setDisplay(mode == "PS4", "inline", document.querySelector("#소녀전선"));
         setDisplay(mode == "artist", "block", document.querySelector("#artistResult"));
         setDisplay(mode == "artist", "inline", ...document.querySelectorAll("#result > button"));
-        // let tag = document.querySelector("#tag");
-        // setDisplay(mode == "tag", "block", tag);
+        setDisplay(mode == "tag", "block", ...document.querySelectorAll("#tag, #tagResult, #result > label"));
         
         if (mode == "PC") {
             dlcSelect.delete("소녀전선");
