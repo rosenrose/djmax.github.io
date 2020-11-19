@@ -19,6 +19,7 @@
             <label class="shadow-white"><input type="radio" name="mode" value="artist">작곡가별 곡 목록</label>
             <!-- <label class="shadow-white"><input type="radio" name="mode" value="tag">장르 태그</label> -->
         </div>
+        <br>
         <div id="dlcSelect">
             <table id="dlcCheckbox" class="inline">
                 <tr><td></td><td></td><td></td><td></td></tr>
@@ -27,21 +28,35 @@
                 <tr><td></td><td></td><td></td><td></td></tr>
             </table>
         </div>
-        <div id="levelSelect">
-            <label class="shadow-white"><input type="checkbox" id="levelCheck">난이도 조건</label>
+        <br>
+        <div id="patternSelect">
             <div id="buttonSelect">
                 <label class="shadow-white"><input type="checkbox" value="4B">4B</label>
                 <label class="shadow-white"><input type="checkbox" value="5B">5B</label>
                 <label class="shadow-white"><input type="checkbox" value="6B">6B</label>
                 <label class="shadow-white"><input type="checkbox" value="8B">8B</label>
             </div>
+            <div id="rankSelect">
+                <label class="shadow-white"><input type="checkbox" value="NM">NM</label>
+                <label class="shadow-white"><input type="checkbox" value="HD">HD</label>
+                <label class="shadow-white"><input type="checkbox" value="MX">MX</label>
+                <label class="shadow-white"><input type="checkbox" value="SC">SC</label>
+            </div>
+        </div>
+        <br>
+        <div id="levelSelect">
+            <label class="shadow-white"><input type="checkbox" id="levelCheck">난이도 조건</label>
             <div>
-                <span class="shadow-white">난이도 </span>
                 <input type="number" id="levelInput" min="1" max="15" placeholder="1~15">
+                <div id="range">
+                    <span class="shadow-white">and </span>
+                    <input type="number" id="levelInput2" min="1" max="15" placeholder="1~15">
+                </div>
                 <select id="levelCondition">
                     <option value="gtr">이상 포함</option>
                     <option value="lss">이하만</option>
                     <option value="equal">일치</option>
+                    <option value="range">사이</option>
                 </select>
             </div>
         </div>

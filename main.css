@@ -59,14 +59,14 @@ td {
     font-size: 1.5em;
     border-radius: 2em;
 }
-#levelSelect div {
+#levelSelect div, #range {
     display: none;
 }
 #levelInput {
     width: 3.5em;
 }
-#randomResult, #artistResult {
-    padding-left: 10%;
+#artistResult {
+    margin-left: 10%;
 }
 #randomResult > li {
     margin: 2%;
@@ -97,6 +97,9 @@ td {
     }
     #so_happy, #result {
         width: 100%;
+    }
+    #randomResult {
+        margin-left: -5%;
     }
     #randomResult p.title {
         font-size: 1.1em;

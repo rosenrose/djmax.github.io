@@ -1,5 +1,6 @@
 dlcSelect = new Set();
 btnSelect = new Set();
+rankSelect = new Set();
 levelLimit = 0;
 const count = 10;
 colorMapping = {"리스펙트": "color_respect.png",
@@ -67,6 +68,7 @@ for (let radio of document.querySelectorAll("#modeSelect input")) {
     radio.addEventListener("change", event => {
         mode = event.target.value;
         setDisplay(mode == "PC" || mode == "PS4", "block", document.querySelector("#dlcSelect"), document.querySelector("#levelSelect"), document.querySelector("#pick"), document.querySelector("#randomResult"));
+        setDisplay(mode == "PC", "inline", document.querySelectorAll("#rankSelect label")[3]);
         setDisplay(mode == "PS4", "inline", document.querySelector("#소녀전선"));
         let ul = document.querySelector("#artistResult");
         setDisplay(mode == "artist", "block", ul);
@@ -76,11 +78,15 @@ for (let radio of document.querySelectorAll("#modeSelect input")) {
         
         if (mode == "PC") {
             dlcSelect.delete("소녀전선");
+            if (document.querySelector("input[value='SC']").checked) {
+                rankSelect.add("SC");
+            }
         }
         else if (mode == "PS4") {
             if (document.querySelector("#소녀전선 input").checked) {
                 dlcSelect.add("소녀전선");
             }
+            rankSelect.delete("SC");
         }
         else if (mode == "artist" && !ul.querySelector("li")) {
             let songs = Object.values(list).reduce((a,b) => [...a, ...b]);
@@ -126,7 +132,7 @@ for (let radio of document.querySelectorAll("#modeSelect input")) {
 
 let levelCheck = document.querySelector("#levelCheck");
 levelCheck.addEventListener("change", event => {
-    setDisplay(event.target.checked, "block", ...document.querySelectorAll("#levelSelect div"))
+    setDisplay(event.target.checked, "block", ...document.querySelectorAll("#levelSelect > div"))
 });
 
 for (let check of document.querySelectorAll("#buttonSelect input")) {
@@ -140,13 +146,28 @@ for (let check of document.querySelectorAll("#buttonSelect input")) {
     });
     check.click();
 }
+for (let check of document.querySelectorAll("#rankSelect input")) {
+    check.addEventListener("change", event => {
+        if (event.target.checked == true) {
+            rankSelect.add(event.target.value);
+        }
+        else {
+            rankSelect.delete(event.target.value);
+        }
+    });
+    check.click();
+}
 
 document.querySelector("#levelInput").addEventListener("change", event => {
     levelLimit = parseInt(event.target.value);
 });
+document.querySelector("#levelInput2").addEventListener("change", event => {
+    levelLimit2 = parseInt(event.target.value);
+});
 
 document.querySelector("#levelCondition").addEventListener("change", event => {
     levelCondition = event.target.value;
+    setDisplay(levelCondition == "range", "inline", document.querySelector("#range"));
 });
 document.querySelector("#levelCondition").value = "gtr";
 document.querySelector("#levelCondition").dispatchEvent(new InputEvent("change"));
@@ -159,37 +180,39 @@ document.querySelector("#run").addEventListener("click", () => {
             return song;})];
     }
     result = result.filter(song => song.hasOwnProperty("exclusive")? song["exclusive"] == mode : true);
-    
-    if (levelCheck.checked) {
-        for (let i=0; i<result.length;) {
-            let levels = getLevels(result[i]["level"]);
-
-            if (levelCondition == "gtr") {
-                if (Math.max(...levels) < levelLimit) {
-                    result.splice(i, 1);
-                }
-                else {
-                    i++;
-                }
-            }
-            else if (levelCondition == "lss") {
-                if (Math.max(...levels) > levelLimit) {
-                    result.splice(i, 1);
-                }
-                else {
-                    i++;
-                }
-            }
-            else if (levelCondition == "equal") {
-                if (!levels.includes(levelLimit)) {
-                    result.splice(i, 1);
-                }
-                else {
-                    result[i]["equal"] = getExactLevel(result[i]["level"], levelLimit);
-                    i++;
+    result = result.filter(song => {
+        for (let btn of btnSelect) {
+            for (let rank of rankSelect) {
+                if (song["level"][btn].hasOwnProperty(rank)) {
+                    return true;
                 }
             }
         }
+        return false;
+    });
+    
+    if (levelCheck.checked) {
+        result = result.filter(song => {
+            let levels = getLevels(song["level"]);
+            if (levelCondition == "gtr") {
+                return (Math.max(...levels) < levelLimit)? false : true;
+            }
+            else if (levelCondition == "lss") {
+                return (Math.max(...levels) > levelLimit)? false : true;
+            }
+            else if (levelCondition == "equal") {
+                if (levels.includes(levelLimit)) {
+                    song["equal"] = getExactLevel(song["level"], levelLimit);
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+            else if (levelCondition == "range") {
+                return (levels.filter(level => (level >= levelLimit) && (level <= levelLimit2)).length)? true : false;
+            }
+        });
     }
     console.log(result);
 
@@ -274,7 +297,7 @@ function setDisplay(condition, display, ...element) {
 function getLevels(level) {
     let result = [];
     for (let btn of btnSelect) {
-        for (let rank in level[btn]) {
+        for (let rank of rankSelect) {
             if (mode == "PS4" && rank == "SC") {
                 continue;
             }
@@ -287,7 +310,7 @@ function getLevels(level) {
 function getExactLevel(level, num) {
     let result = [];
     for (let btn of btnSelect) {
-        for (let rank in level[btn]) {
+        for (let rank of rankSelect) {
             if (mode == "PS4" && rank == "SC") {
                 continue;
             }
