@@ -82,7 +82,7 @@ fetch("list.json").then(response => response.json())
         }
     }
     tags = songs.map(song => song["genre"]).filter(song => song!=null);
-    tags = [...new Set(tags.reduce((a,b) => a+" "+b).split(" "))].sort();
+    tags = [...new Set(tags.join(" ").split(" "))].sort();
     let tagDiv = document.querySelector("#tag");
     for (let tag of tags) {
         let cloud = document.createElement("div");
