@@ -51,7 +51,7 @@ fetch("list.json").then(response => response.json())
 
     songs = Object.values(list).reduce((a,b) => [...a, ...b]);
     let artists = [...new Set(songs.map(song => song["artist"]))];
-    artists = artists.sort((a,b) => {if(a.toLowerCase()>b.toLowerCase()) return 1; if(a.toLowerCase()<b.toLowerCase()) return -1; return 0;});
+    artists = artists.sort(sortCaseInsensitive);
     for (let artist of artists) {
         let li = document.createElement("li");
         li.className = "left";
@@ -72,7 +72,8 @@ fetch("list.json").then(response => response.json())
         });
         document.querySelector("#artistResult").appendChild(li);
 
-        let titles = songs.filter(song => song["artist"] == artist).map(song => song["title"]).sort();
+        let titles = songs.filter(song => song["artist"] == artist).map(song => song["title"]);
+        titles = titles.sort(sortCaseInsensitive);
         let second_ul = document.createElement("ul");
         second_ul.style.display = "none";
         li.appendChild(second_ul);
@@ -82,6 +83,7 @@ fetch("list.json").then(response => response.json())
             second_ul.appendChild(second_li);
         }
     }
+
     tags = songs.map(song => song["genre"]).filter(song => song!=null);
     tags = [...new Set(tags.join(" ").split(" "))].sort();
     let tagDiv = document.querySelector("#tag");
@@ -90,7 +92,8 @@ fetch("list.json").then(response => response.json())
         cloud.className = "cloud";
         cloud.textContent = tag;
         cloud.addEventListener("click", event => {
-            let result = songs.filter(song => song["genre"]!=null && song["genre"].includes(event.target.textContent)).sort((a,b) => {if(a["title"]>b["title"]) return 1; if(a["title"]<b["title"]) return -1; return 0;});
+            let result = songs.filter(song => song["genre"]!=null && song["genre"].includes(event.target.textContent));
+            result = result.sort((a,b) => sortCaseInsensitive(a["title"], b["title"]));
             let list = document.querySelector("#tagResult");
             for (let song of result) {
                 let li = document.createElement("li");
@@ -334,4 +337,10 @@ function getPatterns(level, num, num2) {
 
 function getRandomInt(minInclude, maxExclude) {
     return Math.floor(Math.random() * (maxExclude - minInclude)) + minInclude;
+}
+
+function sortCaseInsensitive(a, b) {
+    if(a.toLowerCase()>b.toLowerCase()) return 1;
+    if(a.toLowerCase()<b.toLowerCase()) return -1;
+    return 0;
 }
