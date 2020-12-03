@@ -50,7 +50,8 @@ fetch("list.json").then(response => response.json())
     document.querySelectorAll("#modeSelect input")[0].click();
 
     songs = Object.values(list).reduce((a,b) => [...a, ...b]);
-    let artists = [...new Set(songs.map(song => song["artist"]))].sort();
+    let artists = [...new Set(songs.map(song => song["artist"]))];
+    artists = artists.sort((a,b) => {if(a.toLowerCase()>b.toLowerCase()) return 1; if(a.toLowerCase()<b.toLowerCase()) return -1; return 0;});
     for (let artist of artists) {
         let li = document.createElement("li");
         li.className = "left";
