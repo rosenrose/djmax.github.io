@@ -195,9 +195,11 @@ document.querySelector("#levelCondition").dispatchEvent(new InputEvent("change")
 document.querySelector("#run").addEventListener("click", () => {
     let result = [];
     for (let dlc of dlcSelect) {
-        result = [...result, ...JSON.parse(JSON.stringify(list[dlc])).map(song => {
+        let temp = JSON.parse(JSON.stringify(list[dlc]));
+        for (let song of temp) {
             if(!song.hasOwnProperty("game")) song["game"] = dlc;
-            return song;})];
+        }
+        result = [...result, ...temp];
     }
     result = result.filter(song => song.hasOwnProperty("exclusive")? song["exclusive"] == mode : true);
     result = result.filter(song => {
