@@ -9895,60 +9895,9 @@
   ],
   "소녀전선": [
     {
-      "title": "Frontline",
-      "artist": "B@kamin / M2U",
-      "genre": null,
-      "exclusive": "PS4",
-      "level": {
-        "4B": {
-          "NM": 4,
-          "HD": 8,
-          "MX": 12
-        },
-        "5B": {
-          "NM": 6,
-          "HD": 10
-        },
-        "6B": {
-          "NM": 6,
-          "HD": 10
-        },
-        "8B": {
-          "NM": 6,
-          "HD": 9,
-          "MX": 13
-        }
-      }
-    },
-    {
-      "title": "What am I Fighting for?",
-      "artist": "Haloweak",
-      "genre": null,
-      "exclusive": "PS4",
-      "level": {
-        "4B": {
-          "NM": 3,
-          "HD": 7
-        },
-        "5B": {
-          "NM": 4,
-          "HD": 10
-        },
-        "6B": {
-          "NM": 4,
-          "MX": 12
-        },
-        "8B": {
-          "NM": 6,
-          "HD": 9
-        }
-      }
-    },
-    {
       "title": "Barbarous Funera",
       "artist": "Rikako Watanabe (Basicape)",
       "genre": null,
-      "exclusive": "PS4",
       "level": {
         "4B": {
           "NM": 4,
@@ -9963,11 +9912,233 @@
         "6B": {
           "NM": 6,
           "HD": 9,
-          "MX": 12
+          "MX": 12,
+          "SC": 15
         },
         "8B": {
           "NM": 7,
+          "MX": 13,
+          "SC": 15
+        }
+      }
+    },
+    {
+      "title": "Frontline",
+      "artist": "B@kamin / M2U",
+      "genre": null,
+      "level": {
+        "4B": {
+          "NM": 4,
+          "HD": 8,
+          "MX": 12
+        },
+        "5B": {
+          "NM": 6,
+          "HD": 10,
+          "SC": 14
+        },
+        "6B": {
+          "NM": 6,
+          "HD": 10,
+          "SC": 14
+        },
+        "8B": {
+          "NM": 6,
+          "HD": 9,
           "MX": 13
+        }
+      }
+    },
+    {
+      "title": "What am I fighting for?",
+      "artist": "Haloweak",
+      "genre": null,
+      "level": {
+        "4B": {
+          "NM": 3,
+          "HD": 7,
+          "SC": 14
+        },
+        "5B": {
+          "NM": 4,
+          "HD": 10,
+          "SC": 14
+        },
+        "6B": {
+          "NM": 4,
+          "MX": 12
+        },
+        "8B": {
+          "NM": 6,
+          "HD": 12
+        }
+      }
+    }
+  ],
+  "츄니즘": [
+    {
+      "title": "Cyberozar",
+      "artist": "sakuzyo",
+      "genre": null,
+      "exclusive": "PC",
+      "level": {
+        "4B": {
+          "NM": 5,
+          "MX": 12
+        },
+        "5B": {
+          "NM": 6,
+          "HD": 11,
+          "SC": 15
+        },
+        "6B": {
+          "NM": 5,
+          "MX": 13
+        },
+        "8B": {
+          "NM": 9,
+          "MX": 14
+        }
+      }
+    },
+    {
+      "title": "Garakuta Doll Play",
+      "artist": "t+pazolite",
+      "genre": null,
+      "exclusive": "PC",
+      "level": {
+        "4B": {
+          "NM": 6,
+          "HD": 13,
+          "SC": 15
+        },
+        "5B": {
+          "NM": 9,
+          "HD": 12,
+          "MX": 15
+        },
+        "6B": {
+          "NM": 8,
+          "MX": 15,
+          "SC": 15
+        },
+        "8B": {
+          "NM": 7,
+          "HD": 12,
+          "MX": 15,
+          "SC": 15
+        }
+      }
+    },
+    {
+      "title": "Ikazuchi",
+      "artist": "Takenobu Mitsuyoshi",
+      "genre": null,
+      "exclusive": "PC",
+      "level": {
+        "4B": {
+          "NM": 8,
+          "MX": 15
+        },
+        "5B": {
+          "NM": 8,
+          "MX": 15,
+          "SC": 15
+        },
+        "6B": {
+          "NM": 6,
+          "HD": 13,
+          "MX": 15,
+          "SC": 15
+        },
+        "8B": {
+          "NM": 7,
+          "HD": 13,
+          "MX": 15,
+          "SC": 15
+        }
+      }
+    },
+    {
+      "title": "Ray Tuning",
+      "artist": "NayutalieN",
+      "genre": null,
+      "exclusive": "PC",
+      "level": {
+        "4B": {
+          "NM": 5,
+          "HD": 12
+        },
+        "5B": {
+          "NM": 6,
+          "HD": 13
+        },
+        "6B": {
+          "NM": 6,
+          "HD": 13
+        },
+        "8B": {
+          "NM": 7,
+          "HD": 13
+        }
+      }
+    },
+    {
+      "title": "The wheel to the right",
+      "artist": "Hosoe Shinji",
+      "genre": null,
+      "exclusive": "PC",
+      "level": {
+        "4B": {
+          "NM": 6,
+          "HD": 11,
+          "MX": 14
+        },
+        "5B": {
+          "NM": 7,
+          "HD": 13,
+          "SC": 15
+        },
+        "6B": {
+          "NM": 6,
+          "HD": 12,
+          "MX": 15,
+          "SC": 15
+        },
+        "8B": {
+          "NM": 6,
+          "HD": 13,
+          "MX": 15
+        }
+      }
+    },
+    {
+      "title": "Trrricksters!!",
+      "artist": "s-don vs. Hino Isuka",
+      "genre": null,
+      "exclusive": "PC",
+      "level": {
+        "4B": {
+          "NM": 6,
+          "MX": 14,
+          "SC": 15
+        },
+        "5B": {
+          "NM": 8,
+          "HD": 13,
+          "MX": 15
+        },
+        "6B": {
+          "NM": 8,
+          "HD": 12,
+          "MX": 15,
+          "SC": 15
+        },
+        "8B": {
+          "NM": 8,
+          "HD": 13,
+          "MX": 15,
+          "SC": 15
         }
       }
     }

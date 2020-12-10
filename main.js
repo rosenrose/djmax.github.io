@@ -17,7 +17,7 @@ colorMapping = {"리스펙트": "color_respect.png",
                 "테크니카 2": "color_technika2.png",
                 "테크니카 3": "color_technika3.png",
                 "콜라보": "color_collaboration.png"};
-collaboration = ["길티기어", "소녀전선", "그루브 코스터", "디모", "사이터스"];
+collaboration = ["길티기어", "소녀전선", "그루브 코스터", "디모", "사이터스","츄니즘"];
 
 fetch("list.json").then(response => response.json())
 .then(json => {
@@ -129,23 +129,22 @@ for (let radio of document.querySelectorAll("#modeSelect input")) {
     radio.addEventListener("change", event => {
         mode = event.target.value;
         setDisplay(mode == "PC" || mode == "PS4", "block", ...document.querySelectorAll("#dlcSelect, #patternSelect, #levelSelect, #pick, #randomResult, #resultCount"));
-        setDisplay(mode == "PC", "inline", document.querySelectorAll("#rankSelect label")[3]);
-        setDisplay(mode == "PS4", "inline", document.querySelector("#소녀전선"));
+        setDisplay(mode == "PC", "inline", document.querySelectorAll("#rankSelect label")[3], document.querySelector("#츄니즘"));
         setDisplay(mode == "artist", "block", document.querySelector("#artistResult"));
         setDisplay(mode == "artist", "inline", ...document.querySelectorAll("#result > button"));
         setDisplay(mode == "tag", "block", ...document.querySelectorAll("#tag, #tagResult, #result > label"));
         
         if (mode == "PC") {
-            dlcSelect.delete("소녀전선");
             if (document.querySelector("input[value='SC']").checked) {
                 rankSelect.add("SC");
             }
+            if (document.querySelector("input[value='츄니즘']").checked) {
+                dlcSelect.add("츄니즘");
+            }
         }
         else if (mode == "PS4") {
-            if (document.querySelector("#소녀전선 input").checked) {
-                dlcSelect.add("소녀전선");
-            }
             rankSelect.delete("SC");
+            dlcSelect.delete("츄니즘");
         }
     });
 }
@@ -254,9 +253,7 @@ document.querySelector("#run").addEventListener("click", () => {
         if (resultList[i]["title"] == "Urban Night") {
             src = `${src} (${resultList[i]["artist"]})`;
         }
-        if (game != "소녀전선") {
-            li[i].querySelector("img").src = `song_pic/${src}_${getRandomInt(1,4)}.png`;
-        }
+        li[i].querySelector("img").src = `song_pic/${src}_${getRandomInt(1,4)}.png`;
         
         let p = li[i].querySelectorAll("p");
         p[0].textContent = resultList[i]["title"];
