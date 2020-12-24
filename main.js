@@ -129,7 +129,7 @@ for (let radio of document.querySelectorAll("#modeSelect input")) {
     radio.addEventListener("change", event => {
         mode = event.target.value;
         setDisplay(mode == "PC" || mode == "PS4", "block", ...document.querySelectorAll("#dlcSelect, #patternSelect, #levelSelect, #pick, #randomResult, #resultCount"));
-        setDisplay(mode == "PC", "inline", document.querySelectorAll("#rankSelect label")[3], document.querySelector("#츄니즘"));
+        setDisplay(mode == "PC", "inline", document.querySelectorAll("#rankSelect label")[3]);
         setDisplay(mode == "artist", "block", document.querySelector("#artistResult"));
         setDisplay(mode == "artist", "inline", ...document.querySelectorAll("#result > button"));
         setDisplay(mode == "tag", "block", ...document.querySelectorAll("#tag, #tagResult, #result > label"));
@@ -138,13 +138,9 @@ for (let radio of document.querySelectorAll("#modeSelect input")) {
             if (document.querySelector("input[value='SC']").checked) {
                 rankSelect.add("SC");
             }
-            if (document.querySelector("input[value='츄니즘']").checked) {
-                dlcSelect.add("츄니즘");
-            }
         }
         else if (mode == "PS4") {
             rankSelect.delete("SC");
-            dlcSelect.delete("츄니즘");
         }
     });
 }
