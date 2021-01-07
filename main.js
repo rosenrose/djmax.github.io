@@ -244,8 +244,11 @@ document.querySelector("#run").addEventListener("click", () => {
     }
     for (let i=0; i<min; i++) {
         let game = resultList[i]["game"];
-
-        let src = resultList[i]["title"].replace("/","／").replace(":","：").replace("?","？");
+        let src = resultList[i]["title"];
+        let replaces = [["\\","＼"],["/","／"],[":","："],["*","＊"],["?","？"],["\"","＂"],["<","＜"],[">","＞"],["|","｜"],["&","＆"],["#","＃"]]
+        for (let rep of replaces) {
+            src = src.replace(rep[0], rep[1]);
+        }
         if (resultList[i]["title"] == "Urban Night") {
             src = `${src} (${resultList[i]["artist"]})`;
         }
