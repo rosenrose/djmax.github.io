@@ -18,6 +18,7 @@ colorMapping = {"리스펙트": "color_respect.png",
                 "테크니카 3": "color_technika3.png",
                 "콜라보": "color_collaboration.png"};
 collaboration = ["길티기어", "소녀전선", "그루브 코스터", "디모", "사이터스","츄니즘"];
+replaces = [["\\","＼"],["/","／"],[":","："],["*","＊"],["?","？"],["\"","＂"],["<","＜"],[">","＞"],["|","｜"],["&","＆"],["#","＃"]]
 
 fetch("list.json").then(response => response.json())
 .then(json => {
@@ -245,7 +246,6 @@ document.querySelector("#run").addEventListener("click", () => {
     for (let i=0; i<min; i++) {
         let game = resultList[i]["game"];
         let src = resultList[i]["title"];
-        let replaces = [["\\","＼"],["/","／"],[":","："],["*","＊"],["?","？"],["\"","＂"],["<","＜"],[">","＞"],["|","｜"],["&","＆"],["#","＃"]]
         for (let rep of replaces) {
             src = src.replace(rep[0], rep[1]);
         }
