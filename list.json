@@ -646,6 +646,36 @@
       "length": 142
     },
     {
+      "title": "Grid System",
+      "artist": "Tsukasa",
+      "genre": "Trance",
+      "exclusive": "PC",
+      "level": {
+        "4B": {
+          "NM": 5,
+          "HD": 9,
+          "MX": 14
+        },
+        "5B": {
+          "NM": 4,
+          "HD": 9,
+          "MX": 13,
+          "SC": 15
+        },
+        "6B": {
+          "NM": 6,
+          "MX": 13,
+          "SC": 15
+        },
+        "8B": {
+          "NM": 5,
+          "HD": 9,
+          "MX": 13
+        }
+      },
+      "length": 144
+    },
+    {
       "title": "Groovin Up",
       "artist": "Mycin.T",
       "genre": "Disco Funk",
