@@ -4526,6 +4526,642 @@
       "length": 142
     }
   ],
+  "포터블 3": [
+    {
+      "title": "Become Myself",
+      "artist": "Kibum / Yohan",
+      "genre": "Hard Core",
+      "level": {
+        "4B": {
+          "NM": 3,
+          "HD": 6,
+          "SC": 13
+        },
+        "5B": {
+          "NM": 3,
+          "HD": 7
+        },
+        "6B": {
+          "NM": 4,
+          "HD": 8,
+          "SC": 14
+        },
+        "8B": {
+          "NM": 5,
+          "HD": 10
+        }
+      }
+    },
+    {
+      "title": "Break!",
+      "artist": "Mr.Funky",
+      "genre": "Synth Pop Rock",
+      "level": {
+        "4B": {
+          "NM": 4,
+          "HD": 6,
+          "MX": 11
+        },
+        "5B": {
+          "NM": 4,
+          "MX": 12,
+          "SC": 14
+        },
+        "6B": {
+          "NM": 5,
+          "MX": 11,
+          "SC": 15
+        },
+        "8B": {
+          "NM": 6,
+          "HD": 10,
+          "MX": 11
+        }
+      }
+    },
+    {
+      "title": "Desperado ~Nu Skool Mix~",
+      "artist": "Paul Bazooka",
+      "genre": "Nu Skool",
+      "level": {
+        "4B": {
+          "NM": 5,
+          "HD": 11,
+          "SC": 14
+        },
+        "5B": {
+          "NM": 5,
+          "HD": 10,
+          "MX": 13
+        },
+        "6B": {
+          "NM": 6,
+          "HD": 12
+        },
+        "8B": {
+          "NM": 6,
+          "HD": 12
+        }
+      }
+    },
+    {
+      "title": "Enemy Storm ~Dark Jungle Mix~",
+      "artist": "Paul Bazooka",
+      "genre": "Dark Jungle",
+      "level": {
+        "4B": {
+          "NM": 8,
+          "MX": 14
+        },
+        "5B": {
+          "NM": 5,
+          "HD": 12,
+          "MX": 15,
+          "SC": 15
+        },
+        "6B": {
+          "NM": 8,
+          "MX": 14,
+          "SC": 15
+        },
+        "8B": {
+          "NM": 7,
+          "HD": 13,
+          "MX": 15
+        }
+      }
+    },
+    {
+      "title": "Everything",
+      "artist": "3rd Coast",
+      "genre": "House Dance",
+      "level": {
+        "4B": {
+          "NM": 3,
+          "HD": 9,
+          "SC": 13
+        },
+        "5B": {
+          "NM": 5,
+          "HD": 9
+        },
+        "6B": {
+          "NM": 4,
+          "HD": 9,
+          "MX": 12,
+          "SC": 13
+        },
+        "8B": {
+          "NM": 6,
+          "HD": 11
+        }
+      }
+    },
+    {
+      "title": "Gone Astray",
+      "artist": "makou",
+      "genre": "Progressive House",
+      "level": {
+        "4B": {
+          "NM": 8,
+          "MX": 14,
+          "SC": 15
+        },
+        "5B": {
+          "NM": 6,
+          "HD": 11,
+          "MX": 14
+        },
+        "6B": {
+          "NM": 8,
+          "HD": 12,
+          "MX": 14,
+          "SC": 15
+        },
+        "8B": {
+          "NM": 6,
+          "HD": 12,
+          "MX": 14
+        }
+      }
+    },
+    {
+      "title": "Hanz up!",
+      "artist": "Mr.Funky",
+      "genre": "Hip House",
+      "level": {
+        "4B": {
+          "NM": 6,
+          "MX": 13
+        },
+        "5B": {
+          "NM": 5,
+          "MX": 13,
+          "SC": 15
+        },
+        "6B": {
+          "NM": 4,
+          "HD": 12,
+          "SC": 15
+        },
+        "8B": {
+          "NM": 6,
+          "HD": 12
+        }
+      }
+    },
+    {
+      "title": "IF",
+      "artist": "Vanilla Unity",
+      "genre": "Rock",
+      "level": {
+        "4B": {
+          "NM": 3,
+          "HD": 6,
+          "MX": 10
+        },
+        "5B": {
+          "NM": 5,
+          "HD": 12
+        },
+        "6B": {
+          "NM": 3,
+          "HD": 8,
+          "MX": 11
+        },
+        "8B": {
+          "NM": 6,
+          "HD": 10,
+          "MX": 12,
+          "SC": 14
+        }
+      }
+    },
+    {
+      "title": "Leave me alone",
+      "artist": "NieN",
+      "genre": "Hard Core",
+      "level": {
+        "4B": {
+          "NM": 7,
+          "HD": 10,
+          "MX": 13
+        },
+        "5B": {
+          "NM": 7,
+          "HD": 11,
+          "MX": 13,
+          "SC": 15
+        },
+        "6B": {
+          "NM": 8,
+          "HD": 12,
+          "MX": 14,
+          "SC": 15
+        },
+        "8B": {
+          "NM": 6,
+          "HD": 12,
+          "MX": 14,
+          "SC": 15
+        }
+      }
+    },
+    {
+      "title": "Luv Flow ~Funky House Mix~",
+      "artist": "Paul Bazooka",
+      "genre": "Funky House",
+      "level": {
+        "4B": {
+          "NM": 3,
+          "MX": 11
+        },
+        "5B": {
+          "NM": 4,
+          "HD": 9,
+          "SC": 13
+        },
+        "6B": {
+          "NM": 4,
+          "HD": 8,
+          "MX": 11
+        },
+        "8B": {
+          "NM": 5,
+          "HD": 12
+        }
+      }
+    },
+    {
+      "title": "Luv is True",
+      "artist": "3rd Coast",
+      "genre": "Luv Pop",
+      "level": {
+        "4B": {
+          "NM": 4,
+          "HD": 8,
+          "SC": 13
+        },
+        "5B": {
+          "NM": 3,
+          "HD": 8,
+          "MX": 10
+        },
+        "6B": {
+          "NM": 4,
+          "HD": 11
+        },
+        "8B": {
+          "NM": 5,
+          "HD": 9,
+          "MX": 11
+        }
+      }
+    },
+    {
+      "title": "MASAI ~Electro House Mix~",
+      "artist": "Paul Bazooka",
+      "genre": "Electro House",
+      "level": {
+        "4B": {
+          "NM": 5,
+          "HD": 11,
+          "SC": 14
+        },
+        "5B": {
+          "NM": 5,
+          "HD": 11,
+          "SC": 14
+        },
+        "6B": {
+          "NM": 7,
+          "HD": 12
+        },
+        "8B": {
+          "NM": 6,
+          "HD": 12,
+          "SC": 14
+        }
+      }
+    },
+    {
+      "title": "Mellow D Fantasy",
+      "artist": "NieN",
+      "genre": "K-Pop",
+      "level": {
+        "4B": {
+          "NM": 2,
+          "MX": 11
+        },
+        "5B": {
+          "NM": 3,
+          "MX": 11,
+          "SC": 13
+        },
+        "6B": {
+          "NM": 4,
+          "HD": 11
+        },
+        "8B": {
+          "NM": 5,
+          "HD": 11,
+          "SC": 13
+        }
+      }
+    },
+    {
+      "title": "NB Ranger : Nonstop Remix",
+      "artist": "Paul Bazooka",
+      "genre": "NB Mixtune",
+      "level": {
+        "4B": {
+          "NM": 6,
+          "MX": 13
+        },
+        "5B": {
+          "NM": 6,
+          "MX": 14
+        },
+        "6B": {
+          "NM": 6,
+          "MX": 13
+        },
+        "8B": {
+          "NM": 5,
+          "HD": 11,
+          "MX": 14,
+          "SC": 15
+        }
+      }
+    },
+    {
+      "title": "Out Law : Reborn",
+      "artist": "Mr.Funky",
+      "genre": "Nu Skool",
+      "level": {
+        "4B": {
+          "NM": 7,
+          "HD": 10,
+          "MX": 13,
+          "SC": 14
+        },
+        "5B": {
+          "NM": 5,
+          "HD": 10,
+          "MX": 14
+        },
+        "6B": {
+          "NM": 7,
+          "HD": 10,
+          "MX": 14,
+          "SC": 15
+        },
+        "8B": {
+          "NM": 6,
+          "HD": 11,
+          "MX": 14,
+          "SC": 15
+        }
+      }
+    },
+    {
+      "title": "Raise me up",
+      "artist": "PlanetBoom",
+      "genre": "Rock'n Pop",
+      "level": {
+        "4B": {
+          "NM": 4,
+          "HD": 11
+        },
+        "5B": {
+          "NM": 4,
+          "MX": 11,
+          "SC": 13
+        },
+        "6B": {
+          "NM": 4,
+          "HD": 11,
+          "SC": 13
+        },
+        "8B": {
+          "NM": 5,
+          "HD": 10,
+          "MX": 12
+        }
+      }
+    },
+    {
+      "title": "Season (Warm Mix)",
+      "artist": "makou",
+      "genre": "Electronic Soul",
+      "level": {
+        "4B": {
+          "NM": 2,
+          "HD": 6
+        },
+        "5B": {
+          "NM": 3,
+          "HD": 6
+        },
+        "6B": {
+          "NM": 3,
+          "HD": 6
+        },
+        "8B": {
+          "NM": 5,
+          "MX": 9
+        }
+      }
+    },
+    {
+      "title": "SuperSonic ~Mr.Funky Dirty Planet Remix~",
+      "artist": "Mr.Funky",
+      "genre": "Nu Disco",
+      "level": {
+        "4B": {
+          "NM": 6,
+          "HD": 9,
+          "MX": 13
+        },
+        "5B": {
+          "NM": 6,
+          "HD": 10,
+          "MX": 13,
+          "SC": 14
+        },
+        "6B": {
+          "NM": 5,
+          "HD": 10,
+          "MX": 12,
+          "SC": 14
+        },
+        "8B": {
+          "NM": 5,
+          "HD": 10,
+          "MX": 13
+        }
+      }
+    },
+    {
+      "title": "The Rain Maker",
+      "artist": "Paul Bazooka",
+      "genre": "Epic Trance",
+      "level": {
+        "4B": {
+          "NM": 7,
+          "MX": 13,
+          "SC": 15
+        },
+        "5B": {
+          "NM": 5,
+          "HD": 11,
+          "MX": 13
+        },
+        "6B": {
+          "NM": 5,
+          "MX": 13,
+          "SC": 14
+        },
+        "8B": {
+          "NM": 5,
+          "HD": 13
+        }
+      }
+    },
+    {
+      "title": "Waiting for the Sun",
+      "artist": "MindCube",
+      "genre": "Synth Pop",
+      "level": {
+        "4B": {
+          "NM": 4,
+          "MX": 10,
+          "SC": 13
+        },
+        "5B": {
+          "NM": 5,
+          "HD": 11
+        },
+        "6B": {
+          "NM": 5,
+          "HD": 10
+        },
+        "8B": {
+          "NM": 5,
+          "HD": 11
+        }
+      }
+    },
+    {
+      "title": "Your Smile",
+      "artist": "Cistrans (RoseLine)",
+      "genre": "Synth Pop",
+      "level": {
+        "4B": {
+          "NM": 4,
+          "HD": 9
+        },
+        "5B": {
+          "NM": 4,
+          "HD": 8,
+          "SC": 13
+        },
+        "6B": {
+          "NM": 4,
+          "HD": 10,
+          "SC": 13
+        },
+        "8B": {
+          "NM": 6,
+          "HD": 11
+        }
+      }
+    },
+    {
+      "title": "ZET ~Mr.Funky Remix~",
+      "artist": "Mr.Funky",
+      "genre": "Indie Dance",
+      "level": {
+        "4B": {
+          "NM": 5,
+          "HD": 12
+        },
+        "5B": {
+          "NM": 6,
+          "MX": 12,
+          "SC": 15
+        },
+        "6B": {
+          "NM": 5,
+          "HD": 11,
+          "SC": 14
+        },
+        "8B": {
+          "NM": 5,
+          "MX": 13
+        }
+      }
+    },
+    {
+      "title": "glory day (Mintorment Remix)",
+      "artist": "Mintorment",
+      "genre": null,
+      "game": "리스펙트",
+      "level": {
+        "4B": {
+          "NM": 7,
+          "MX": 14
+        },
+        "5B": {
+          "NM": 6,
+          "HD": 12,
+          "MX": 14
+        },
+        "6B": {
+          "NM": 7,
+          "MX": 13,
+          "SC": 15
+        },
+        "8B": {
+          "NM": 7,
+          "HD": 14,
+          "SC": 15
+        }
+      },
+      "length": 0
+    },
+    {
+      "title": "glory day -JHS Remix-",
+      "artist": "JHS",
+      "genre": null,
+      "game": "리스펙트",
+      "level": {
+        "4B": {
+          "NM": 5,
+          "HD": 9,
+          "MX": 12,
+          "SC": 14
+        },
+        "5B": {
+          "NM": 6,
+          "HD": 11,
+          "MX": 13
+        },
+        "6B": {
+          "NM": 6,
+          "HD": 10,
+          "MX": 13
+        },
+        "8B": {
+          "NM": 6,
+          "HD": 11,
+          "MX": 13,
+          "SC": 15
+        }
+      },
+      "length": 0
+    }
+  ],
   "트릴로지": [
     {
       "title": "바람의 기억",

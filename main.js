@@ -8,6 +8,7 @@ const maxCount = 10;
 colorMapping = {"리스펙트": "color_respect.png",
                 "포터블 1": "color_portable1.png",
                 "포터블 2": "color_portable2.png",
+                "포터블 3": "color_portable3.png",
                 "트릴로지": "color_trilogy.png",
                 "클래지콰이": "color_clazziquai.png",
                 "블랙 스퀘어": "color_blacksquare.png",
