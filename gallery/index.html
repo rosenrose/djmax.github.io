@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Gallery</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style type="text/css">
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        .grid {
+            display: grid;
+            max-width: 100%;
+            width: 100%;
+            min-height: 400px;
+            margin: 0 auto;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            grid-auto-rows: 20px;
+            grid-gap: 5px;
+        }
+        .item {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        .item > img {
+            width: 100%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="grid">
+
+    </div>
+    <script type="text/javascript">
+        grid = document.querySelector(".grid");
+        function SetGridItemHeight() {
+            let rowHeight = parseInt(window.getComputedStyle(grid)["grid-auto-rows"]);
+            let rowGap = parseInt(window.getComputedStyle(grid)["grid-row-gap"]);
+            let items = grid.querySelectorAll(".item");
+            for (let item of items) {
+                item.style.gridRowEnd = `span ${Math.floor(item.children[0].offsetHeight/(rowHeight + rowGap))}`;
+            }
+        }
+        window.addEventListener("load", SetGridItemHeight);
+        window.addEventListener("resize", SetGridItemHeight);
+        category = new URL(document.URL).searchParams.get("category");
+
+        fetch("list.json")
+        .then(response => response.json())
+        .then(json => {
+            list = json;
+            all = [];
+            for (let category in list) {
+                all = [...all, ...list[category]];
+            }
+            all.sort();
+
+            for (i=0; i<10; i++) {
+                let div= document.createElement("div");
+                div.className = "item";
+                let img = document.createElement("img");
+                img.src = `all/${all[i]}`;
+                img.loading = "lazy";
+                div.appendChild(img);
+                grid.appendChild(div);
+            }
+        });
+    </script>
+</body>
+</html>
