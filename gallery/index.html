@@ -63,6 +63,7 @@
         protocol = url.protocol;
         category = url.searchParams.get("category");
         num = parseInt(url.searchParams.get("num"));
+        prefix = `${protocol}//d2wwh0934dzo2k.cloudfront.net/djmax`;
 
         fetch("list.json")
         .then(response => response.json())
@@ -83,8 +84,6 @@
                 count = num? num : all.length;
             }
             for (i=0; i<count; i++) {
-                // let prefix = "http://crazytempler.ipdisk.co.kr:4569/publist/HDD1/Public/djmax";
-                let prefix = `${protocol}//d2wwh0934dzo2k.cloudfront.net/djmax`;
                 let item = document.createElement("a");
                 item.className = "item";
                 item.href = `${prefix}/original/${iter[i]}`;
