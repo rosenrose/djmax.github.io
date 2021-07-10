@@ -92,7 +92,7 @@
                 // let div = document.createElement("div");
                 let img = document.createElement("img");
                 img.src = `${prefix}/thumbnail/${iter[i]}`;
-                // img.loading = "lazy";
+                img.loading = "lazy";
                 img.onload = SetGridItemHeight;
                 let p = document.createElement("p");
                 p.textContent = iter[i].slice(4,-4);
