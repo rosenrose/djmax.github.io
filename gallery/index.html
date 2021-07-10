@@ -52,12 +52,12 @@
             items.forEach(item => {
                 let span = Math.ceil((item.querySelector("img").offsetHeight + item.querySelector("p").offsetHeight)/(rowHeight + rowGap));
                 item.style.gridRowEnd = `span ${span}`;
-                rows += span;
+                // rows += span;
                 // item.style.gridRowEnd = `span ${item.clientHeight}`;
             });
             // alert(rows);
         }
-        window.addEventListener("load", SetGridItemHeight);
+        // window.addEventListener("load", SetGridItemHeight);
         window.addEventListener("resize", SetGridItemHeight);
         url = new URL(document.URL);
         protocol = url.protocol;
@@ -83,8 +83,8 @@
                 count = num? num : all.length;
             }
             for (i=0; i<count; i++) {
-                let prefix = "http://crazytempler.ipdisk.co.kr:4569/publist/HDD1/Public/djmax";
-                // let prefix = `${protocol}//d2wwh0934dzo2k.cloudfront.net/djmax`;
+                // let prefix = "http://crazytempler.ipdisk.co.kr:4569/publist/HDD1/Public/djmax";
+                let prefix = `${protocol}//d2wwh0934dzo2k.cloudfront.net/djmax`;
                 let item = document.createElement("a");
                 item.className = "item";
                 item.href = `${prefix}/original/${iter[i]}`;
@@ -93,7 +93,7 @@
                 let img = document.createElement("img");
                 img.src = `${prefix}/thumbnail/${iter[i]}`;
                 // img.loading = "lazy";
-                // img.onload = SetGridItemHeight;
+                img.onload = SetGridItemHeight;
                 let p = document.createElement("p");
                 p.textContent = iter[i].slice(4,-4);
                 // div.appendChild(img);
@@ -101,7 +101,7 @@
                 item.appendChild(p);
                 grid.appendChild(item);
             }
-            SetGridItemHeight();
+            // SetGridItemHeight();
         });
     </script>
 </body>
