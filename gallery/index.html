@@ -11,47 +11,58 @@
             margin: 0;
             padding: 0;
         }
+        a:link {
+            text-decoration: none;
+        }
         .grid {
             display: grid;
             max-width: 100%;
             width: 100%;
             min-height: 400px;
             margin: 0 auto;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            grid-auto-rows: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(19%, 1fr));
+            grid-auto-rows: 40px;
             grid-gap: 5px;
         }
         .item {
             width: 100%;
-            overflow: hidden;
-            position: relative;
+            background-color: bisque;
+            /* overflow: hidden; */
+            /* position: relative; */
         }
         .item > img {
             width: 100%;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
+            /* position: absolute; */
+            /* left: 50%;
+            top: 50%; */
+            /* transform: translate(-50%, -50%); */
         }
     </style>
 </head>
 <body>
     <div class="grid">
-
     </div>
     <script type="text/javascript">
         grid = document.querySelector(".grid");
         function SetGridItemHeight() {
+            let rows = 0;
             let rowHeight = parseInt(window.getComputedStyle(grid)["grid-auto-rows"]);
             let rowGap = parseInt(window.getComputedStyle(grid)["grid-row-gap"]);
             let items = grid.querySelectorAll(".item");
-            for (let item of items) {
-                item.style.gridRowEnd = `span ${Math.floor(item.children[0].offsetHeight/(rowHeight + rowGap))}`;
-            }
+            items.forEach(item => {
+                let span = Math.ceil((item.querySelector("img").offsetHeight + item.querySelector("p").offsetHeight)/(rowHeight + rowGap));
+                item.style.gridRowEnd = `span ${span}`;
+                rows += span;
+                // item.style.gridRowEnd = `span ${item.clientHeight}`;
+            });
+            // alert(rows);
         }
         window.addEventListener("load", SetGridItemHeight);
         window.addEventListener("resize", SetGridItemHeight);
-        category = new URL(document.URL).searchParams.get("category");
+        url = new URL(document.URL);
+        protocol = url.protocol;
+        category = url.searchParams.get("category");
+        num = parseInt(url.searchParams.get("num"));
 
         fetch("list.json")
         .then(response => response.json())
@@ -63,15 +74,34 @@
             }
             all.sort();
 
-            for (i=0; i<10; i++) {
-                let div= document.createElement("div");
-                div.className = "item";
-                let img = document.createElement("img");
-                img.src = `all/${all[i]}`;
-                img.loading = "lazy";
-                div.appendChild(img);
-                grid.appendChild(div);
+            if (category) {
+                iter = list[category];
+                count = list[category].length;
             }
+            else {
+                iter = all;
+                count = num? num : all.length;
+            }
+            for (i=0; i<count; i++) {
+                let prefix = "http://crazytempler.ipdisk.co.kr:4569/publist/HDD1/Public/djmax";
+                // let prefix = `${protocol}//d2wwh0934dzo2k.cloudfront.net/djmax`;
+                let item = document.createElement("a");
+                item.className = "item";
+                item.href = `${prefix}/original/${iter[i]}`;
+                item.target = "_blank";
+                // let div = document.createElement("div");
+                let img = document.createElement("img");
+                img.src = `${prefix}/thumbnail/${iter[i]}`;
+                // img.loading = "lazy";
+                // img.onload = SetGridItemHeight;
+                let p = document.createElement("p");
+                p.textContent = iter[i].slice(4,-4);
+                // div.appendChild(img);
+                item.appendChild(img);
+                item.appendChild(p);
+                grid.appendChild(item);
+            }
+            SetGridItemHeight();
         });
     </script>
 </body>
