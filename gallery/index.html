@@ -69,10 +69,7 @@
         .then(response => response.json())
         .then(json => {
             list = json;
-            all = [];
-            for (let category in list) {
-                all = [...all, ...list[category]];
-            }
+            all = Object.values(list).reduce((a, b) => [...a, ...b]);
             all.sort();
 
             if (category) {
