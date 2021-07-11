@@ -14,6 +14,31 @@
         a:link {
             text-decoration: none;
         }
+
+        #menu {
+            text-align: center;
+            margin-top: 15vh;
+            list-style-type: none;
+        }
+        #menu li {
+            margin: 1em;
+        }
+        #menu img {
+            width: 10%;
+        }
+
+        @media ( max-width: 768px ) {
+            #menu {
+                margin-top: 0;
+            }
+            #menu li {
+                margin: 0.5em;
+            }
+            #menu img {
+                width: 50%;
+            }
+        }
+
         .grid {
             display: grid;
             max-width: 100%;
@@ -40,6 +65,19 @@
     </style>
 </head>
 <body>
+    <ul id="menu">
+        <li><a href="./?category=all"><img src="all.png"></a></li>
+        <li><a href="./?category=respect"><img src="respect.png"></a></li>
+        <li><a href="./?category=portable1/2"><img src="portable1.png"><img src="portable2.png"></a></li>
+        <li><a href="./?category=portable3"><img src="portable3.png"></a></li>
+        <li><a href="./?category=trilogy"><img src="trilogy.png"></a></li>
+        <li><a href="./?category=clazziquai"><img src="clazziquai.png"></a></li>
+        <li><a href="./?category=blacksquare"><img src="blacksquare.png"></a></li>
+        <li><a href="./?category=vextension"><img src="vextension.png"></a></li>
+        <li><a href="./?category=technika1"><img src="technika1.png"></a></li>
+        <li><a href="./?category=technika2"><img src="technika2.png"></a></li>
+        <li><a href="./?category=technika3"><img src="technika3.png"></a></li>
+    </ul>
     <div class="grid">
     </div>
     <script type="text/javascript">
@@ -73,31 +111,29 @@
             all.sort();
 
             if (category) {
-                iter = list[category];
-                count = list[category].length;
+                document.querySelector("#menu").remove();
+                iter = (category == "all")? all : list[category];
+                iter.forEach(i => {
+                    let item = document.createElement("a");
+                    item.className = "item";
+                    item.href = `${prefix}/original/${i}`;
+                    item.target = "_blank";
+                    // let div = document.createElement("div");
+                    let img = document.createElement("img");
+                    img.src = `${prefix}/thumbnail/${i}`;
+                    img.loading = "lazy";
+                    img.onload = SetGridItemHeight;
+                    let p = document.createElement("p");
+                    p.textContent = i.slice(4,-4);
+                    // div.appendChild(img);
+                    item.appendChild(img);
+                    item.appendChild(p);
+                    grid.appendChild(item);
+                });
             }
             else {
-                iter = all;
-                count = num? num : all.length;
+                grid.remove();
             }
-            for (i=0; i<count; i++) {
-                let item = document.createElement("a");
-                item.className = "item";
-                item.href = `${prefix}/original/${iter[i]}`;
-                item.target = "_blank";
-                // let div = document.createElement("div");
-                let img = document.createElement("img");
-                img.src = `${prefix}/thumbnail/${iter[i]}`;
-                img.loading = "lazy";
-                img.onload = SetGridItemHeight;
-                let p = document.createElement("p");
-                p.textContent = iter[i].slice(4,-4);
-                // div.appendChild(img);
-                item.appendChild(img);
-                item.appendChild(p);
-                grid.appendChild(item);
-            }
-            // SetGridItemHeight();
         });
     </script>
 </body>
