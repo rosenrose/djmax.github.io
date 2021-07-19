@@ -5,21 +5,27 @@ levelLimit = 0;
 levelLimit2 = 0;
 count = 10;
 const maxCount = 10;
-colorMapping = {"리스펙트": "color_respect.png",
-                "포터블 1": "color_portable1.png",
-                "포터블 2": "color_portable2.png",
-                "포터블 3": "color_portable3.png",
-                "트릴로지": "color_trilogy.png",
-                "클래지콰이": "color_clazziquai.png",
-                "블랙 스퀘어": "color_blacksquare.png",
-                "V 익스텐션": "color_vextension.png",
-                "이모셔널 센스": "color_emotionalsense.png",
-                "테크니카 1": "color_technika1.png",
-                "테크니카 2": "color_technika2.png",
-                "테크니카 3": "color_technika3.png",
-                "콜라보": "color_collaboration.png"};
-collaboration = ["길티기어", "소녀전선", "그루브 코스터", "디모", "사이터스","츄니즘"];
-replaces = [["\\","＼"],["/","／"],[":","："],["*","＊"],["?","？"],["\"","＂"],["<","＜"],[">","＞"],["|","｜"],["&","＆"],["#","＃"]]
+dlcMapping = {"respect": "리스펙트",
+                "portable1": "포터블 1",
+                "portable2": "포터블 2",
+                "portable3": "포터블 3",
+                "trilogy": "트릴로지",
+                "clazziquai": "클래지콰이",
+                "blacksquare": "블랙 스퀘어",
+                "vextension": "V 익스텐션",
+                "emotionalsense": "이모셔널 센스",
+                "technika1": "테크니카 1",
+                "technika2": "테크니카 2",
+                "technika3": "테크니카 3",
+                "guiltygear": "길티기어",
+                "girlsfrontline": "소녀전선",
+                "groovecoaster": "그루브 코스터",
+                "deemo": "디모",
+                "cytus": "사이터스",
+                "chunithm": "츄니즘"
+            };
+collaboration = ["guiltygear", "girlsfrontline", "groovecoaster", "deemo", "cytus","chunithm"];
+replaces = [["\\","＼"],["/","／"],[":","："],["*","＊"],["?","？"],["\"","＂"],["<","＜"],[">","＞"],["|","｜"],["&","＆"],["#","＃"]];
 
 fetch("list.json").then(response => response.json())
 .then(json => {
@@ -32,7 +38,6 @@ fetch("list.json").then(response => response.json())
         let dlc = Object.keys(list)[i];
         let label = document.createElement("label");
         label.className = "shadow-white";
-        label.id = dlc.replace(" ","_");
         let input = document.createElement("input");
         input.type = "checkbox";
         input.value = dlc;
@@ -45,7 +50,7 @@ fetch("list.json").then(response => response.json())
             }
         });
         label.appendChild(input);
-        label.appendChild(document.createTextNode(dlc));
+        label.appendChild(document.createTextNode(dlcMapping[dlc]));
         dlcCheck[i].appendChild(label);
         label.click();
     }
@@ -253,7 +258,7 @@ document.querySelector("#run").addEventListener("click", () => {
         if (resultList[i]["title"] == "Urban Night") {
             src = `${src} (${resultList[i]["artist"]})`;
         }
-        li[i].querySelector("img").src = `song_pic/${src}_${getRandomInt(1,5)}.png`;
+        li[i].querySelector("img").src = `song_pic/${src}_${getRandomInt(2,5)}.png`;
         
         let p = li[i].querySelectorAll("p");
         p[0].textContent = resultList[i]["title"];
@@ -274,11 +279,11 @@ document.querySelector("#run").addEventListener("click", () => {
         }
         p[1].textContent = resultList[i]["artist"];
         
-        if (game != "클래지콰이") {
+        if (game != "clazziquai") {
             p[0].style.color = "#fff";
             p[1].style.color = "#fff";
         }
-        li[i].querySelector("div").style.backgroundImage = (collaboration.includes(game))? `url(${colorMapping["콜라보"]})` : `url(${colorMapping[game]})`;
+        li[i].querySelector("div").style.backgroundImage = (collaboration.includes(game))? "url(color_collaboration.png)" : `url(color_${game}.png)`;
     }
 });
 

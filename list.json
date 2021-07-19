@@ -1,5 +1,5 @@
 {
-  "리스펙트": [
+  "respect": [
     {
       "title": "비상 ~Stay With Me~",
       "artist": "Mycin.T",
@@ -1690,7 +1690,7 @@
       "length": 126
     }
   ],
-  "포터블 1": [
+  "portable1": [
     {
       "title": "바람에게 부탁해",
       "artist": "Forte Escape",
@@ -3140,7 +3140,7 @@
       "length": 102
     }
   ],
-  "포터블 2": [
+  "portable2": [
     {
       "title": "설레임",
       "artist": "ND Lee",
@@ -4537,7 +4537,7 @@
       "length": 142
     }
   ],
-  "포터블 3": [
+  "portable3": [
     {
       "title": "Become Myself",
       "artist": "Kibum / Yohan",
@@ -5139,7 +5139,7 @@
       "title": "glory day (Mintorment Remix)",
       "artist": "Mintorment",
       "genre": null,
-      "game": "리스펙트",
+      "game": "respect",
       "level": {
         "4B": {
           "NM": 7,
@@ -5167,7 +5167,7 @@
       "title": "glory day -JHS Remix-",
       "artist": "JHS",
       "genre": null,
-      "game": "리스펙트",
+      "game": "respect",
       "level": {
         "4B": {
           "NM": 5,
@@ -5195,7 +5195,7 @@
       "length": 121
     }
   ],
-  "트릴로지": [
+  "trilogy": [
     {
       "title": "바람의 기억",
       "artist": "Forte Escape",
@@ -5746,7 +5746,7 @@
       "title": "Nevermind",
       "artist": "Paul Bazooka",
       "genre": "Epic Trance",
-      "game": "리스펙트",
+      "game": "respect",
       "level": {
         "4B": {
           "NM": 7,
@@ -5773,7 +5773,7 @@
       "length": 132
     }
   ],
-  "클래지콰이": [
+  "clazziquai": [
     {
       "title": "고백, 꽃, 늑대",
       "artist": "ReX",
@@ -6455,7 +6455,7 @@
       "title": "Rising The Sonic",
       "artist": "Dayz",
       "genre": "Ambient Rock",
-      "game": "리스펙트",
+      "game": "respect",
       "level": {
         "4B": {
           "NM": 4,
@@ -6483,7 +6483,7 @@
       "length": 105
     }
   ],
-  "블랙 스퀘어": [
+  "blacksquare": [
     {
       "title": "고백, 꽃, 늑대 part.2",
       "artist": "ReX",
@@ -7079,7 +7079,7 @@
       "title": "ANALYS",
       "artist": "HAYAKO",
       "genre": "Psychedelic Full-On",
-      "game": "리스펙트",
+      "game": "respect",
       "level": {
         "4B": {
           "NM": 7,
@@ -7107,7 +7107,7 @@
       "length": 128
     }
   ],
-  "V 익스텐션": [
+  "vextension": [
     {
       "title": "Attack",
       "artist": "Mr.Funky",
@@ -7692,7 +7692,7 @@
       "length": 123
     }
   ],
-  "이모셔널 센스": [
+  "emotionalsense": [
     {
       "title": "Cosmic Elevator",
       "artist": "Forte Escape",
@@ -7909,7 +7909,7 @@
       "length": 106
     }
   ],
-  "테크니카 1": [
+  "technika1": [
     {
       "title": "Access",
       "artist": "Sphazer",
@@ -8505,7 +8505,7 @@
       "title": "Do you want it",
       "artist": "House Rulez",
       "genre": "House",
-      "game": "리스펙트",
+      "game": "respect",
       "level": {
         "4B": {
           "NM": 5,
@@ -8529,7 +8529,7 @@
       "length": 140
     }
   ],
-  "테크니카 2": [
+  "technika2": [
     {
       "title": "Airwave",
       "artist": "ReX",
@@ -9181,7 +9181,7 @@
       "title": "End of Mythology",
       "artist": "Alice Schach and the Magic Orchestra",
       "genre": "Pop",
-      "game": "리스펙트",
+      "game": "respect",
       "level": {
         "4B": {
           "NM": 3,
@@ -9208,7 +9208,7 @@
       "length": 139
     }
   ],
-  "테크니카 3": [
+  "technika3": [
     {
       "title": "설레임 Part.2",
       "artist": "ND Lee",
@@ -10026,7 +10026,7 @@
       "title": "ALiCE",
       "artist": "seibin",
       "genre": "Fantasy Pop",
-      "game": "리스펙트",
+      "game": "respect",
       "level": {
         "4B": {
           "NM": 4,
@@ -10054,7 +10054,7 @@
       "length": 154
     }
   ],
-  "길티기어": [
+  "guiltygear": [
     {
       "title": "Break a Spell",
       "artist": "Daisuke Ishiwatari",
@@ -10143,7 +10143,7 @@
       "length": 124
     }
   ],
-  "그루브 코스터": [
+  "groovecoaster": [
     {
       "title": "Black MInD",
       "artist": "COSIO",
@@ -10434,7 +10434,7 @@
       "length": 126
     }
   ],
-  "디모": [
+  "deemo": [
     {
       "title": "Angelic Sphere",
       "artist": "3R2",
@@ -10718,7 +10718,7 @@
       "length": 184
     }
   ],
-  "사이터스": [
+  "cytus": [
     {
       "title": "AXION",
       "artist": "sakuzyo",
@@ -11052,7 +11052,7 @@
       "length": 112
     }
   ],
-  "소녀전선": [
+  "girlsfrontline": [
     {
       "title": "Barbarous Funera",
       "artist": "Rikako Watanabe (Basicape)",
@@ -11137,7 +11137,7 @@
       "length": 104
     }
   ],
-  "츄니즘": [
+  "chunithm": [
     {
       "title": "Cyberozar",
       "artist": "sakuzyo",
