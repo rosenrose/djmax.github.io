@@ -259,7 +259,7 @@ document.querySelector("#run").addEventListener("click", () => {
         if (resultList[i]["title"] == "Urban Night") {
             title = `${title} (${resultList[i]["artist"]})`;
         }
-        li[i].querySelector(".song_pic").src = `song_pic/${title}_${getRandomInt(1,5)}.png`;
+        li[i].querySelector(".song_pic").src = `song_pic/${title}_${getRandomInt(1,6)}.png`;
         
         let p = li[i].querySelectorAll("p");
         p[0].textContent = resultList[i]["title"];

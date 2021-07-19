@@ -11,17 +11,27 @@
             margin: 0;
             padding: 0;
         }
-        a:link {
-            text-decoration: none;
-        }
 
         .item {
             display: inline-block;
             margin: 10px;
-            max-width: 48.5%;
+            max-width: 32%;
         }
-        .item > img {
-            width: 20%;
+        .item > .up {
+            display: flex;
+        }
+        .item > .up > img {
+            flex-grow: 1;
+            margin-bottom: 0.5em;
+        }
+        .item > .up > img:nth-child(1) {
+            margin-right: 0.5em;
+        }
+        .item > .up > img:nth-child(2) {
+            margin-left: 0.5em;
+        }
+        .item > .down > img {
+            width: 25%;
         }
 
         #menu {
@@ -95,7 +105,13 @@
                 iter.forEach(song => {
                     let item = document.createElement("div");
                     item.className = "item";
-                    for (let i=0; i<5; i++) {
+                    let up = document.createElement("div");
+                    up.className = "up";
+                    let down = document.createElement("div");
+                    down.className = "down";
+                    item.appendChild(up);
+                    item.appendChild(down);
+                    for (let i=0; i<6; i++) {
                         let img = document.createElement("img");
                         let title = song.title;
                         for (let rep of replaces) {
@@ -106,7 +122,12 @@
                         };
                         img.src = `${title}_${i+1}.png`;
                         img.loading = "lazy";
-                        item.appendChild(img);
+                        if (i<2) {
+                            up.append(img);
+                        }
+                        else {
+                            down.append(img);
+                        }
                     }
                     let p = document.createElement("p");
                     p.textContent = song.title;
