@@ -200,9 +200,7 @@ document.querySelector("#run").addEventListener("click", () => {
     for (let dlc of dlcSelect) {
         let temp = JSON.parse(JSON.stringify(list[dlc]));
         for (let song of temp) {
-            if (!song.hasOwnProperty("game")) {
-                song["game"] = dlc;
-            }
+            song["category"] = dlc;
         }
         result = [...result, ...temp];
     }
@@ -253,7 +251,7 @@ document.querySelector("#run").addEventListener("click", () => {
         li[i].querySelector(".title_artist").style.backgroundImage = "";
     }
     for (let i=0; i<min; i++) {
-        let game = resultList[i]["game"];
+        let category = resultList[i]["category"];
         let title = resultList[i]["title"];
         for (let rep of replaces) {
             title = title.replace(rep[0], rep[1]);
@@ -282,11 +280,11 @@ document.querySelector("#run").addEventListener("click", () => {
         }
         p[1].textContent = resultList[i]["artist"];
         
-        if (game != "clazziquai") {
+        if (category != "clazziquai") {
             p[0].style.color = "#fff";
             p[1].style.color = "#fff";
         }
-        li[i].querySelector(".title_artist").style.backgroundImage = (collaboration.includes(game))? "url(color_collaboration.png)" : `url(color_${game}.png)`;
+        li[i].querySelector(".title_artist").style.backgroundImage = (collaboration.includes(category))? "url(img/color_collaboration.png)" : `url(img/color_${category}.png)`;
     }
 });
 

@@ -66,22 +66,23 @@
 </head>
 <body>
     <ul id="menu">
-        <li><a href="./?category=all"><img src="all.png"></a></li>
-        <li><a href="./?category=respect"><img src="respect.png"></a></li>
-        <li><a href="./?category=portable1/2"><img src="portable1.png"><img src="portable2.png"></a></li>
-        <li><a href="./?category=portable3"><img src="portable3.png"></a></li>
-        <li><a href="./?category=trilogy"><img src="trilogy.png"></a></li>
-        <li><a href="./?category=clazziquai"><img src="clazziquai.png"></a></li>
-        <li><a href="./?category=blacksquare"><img src="blacksquare.png"></a></li>
-        <li><a href="./?category=vextension"><img src="vextension.png"></a></li>
-        <li><a href="./?category=technika1"><img src="technika1.png"></a></li>
-        <li><a href="./?category=technika2"><img src="technika2.png"></a></li>
-        <li><a href="./?category=technika3"><img src="technika3.png"></a></li>
+        <li><a href="./?category=all"><img src="../img/category_all.png"></a></li>
+        <li><a href="./?category=respect"><img src="../img/category_respect.png"></a></li>
+        <li><a href="./?category=portable1/2"><img src="../img/category_portable1.png"><img src="../img/category_portable2.png"></a></li>
+        <li><a href="./?category=portable3"><img src="../img/category_portable3.png"></a></li>
+        <li><a href="./?category=trilogy"><img src="../img/category_trilogy.png"></a></li>
+        <li><a href="./?category=clazziquai"><img src="../img/category_clazziquai.png"></a></li>
+        <li><a href="./?category=blacksquare"><img src="../img/category_blacksquare.png"></a></li>
+        <li><a href="./?category=vextension"><img src="../img/category_vextension.png"></a></li>
+        <li><a href="./?category=technika1"><img src="../img/category_technika1.png"></a></li>
+        <li><a href="./?category=technika2"><img src="../img/category_technika2.png"></a></li>
+        <li><a href="./?category=technika3"><img src="../img/category_technika3.png"></a></li>
     </ul>
     <div class="grid">
     </div>
     <script type="text/javascript">
         grid = document.querySelector(".grid");
+        menu = document.querySelector("#menu");
         function SetGridItemHeight() {
             let rows = 0;
             let rowHeight = parseInt(window.getComputedStyle(grid)["grid-auto-rows"]);
@@ -111,7 +112,7 @@
             all.sort();
 
             if (category) {
-                document.querySelector("#menu").remove();
+                menu.remove();
                 iter = (category == "all")? all : list[category];
                 iter.forEach(i => {
                     let item = document.createElement("a");

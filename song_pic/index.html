@@ -3,7 +3,7 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Gallery</title>
+    <title>Song Thumbnail</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <style type="text/css">
         * {
@@ -18,55 +18,105 @@
         .item {
             display: inline-block;
             margin: 10px;
-            max-width: 32.2%;
-            background-color: bisque;
+            max-width: 48.5%;
         }
         .item > img {
             width: 20%;
+        }
+
+        #menu {
+            text-align: center;
+            margin-top: 40vh;
+        }
+        #menu img {
+            width: 12%;
+            margin: 1%;
         }
 
         @media ( max-width: 768px ) {
             .item {
                 max-width: 100%;
             }
+            #menu {
+                margin-top: 0;
+            }
+            #menu img {
+                width: 50%;
+            }
         }
     </style>
 </head>
 <body>
+    <div id="menu">
+        <a href="./?category=all"><img src="../img/category_all.png"></a>
+        <a href="./?category=respect"><img src="../img/category_respect.png"></a>
+        <a href="./?category=portable1"><img src="../img/category_portable1.png"></a>
+        <a href="./?category=portable2"><img src="../img/category_portable2.png"></a>
+        <a href="./?category=portable3"><img src="../img/category_portable3.png"></a>
+        <a href="./?category=trilogy"><img src="../img/category_trilogy.png"></a>
+        <a href="./?category=clazziquai"><img src="../img/category_clazziquai.png"></a>
+        <a href="./?category=blacksquare"><img src="../img/category_blacksquare.png"></a>
+        <a href="./?category=vextension"><img src="../img/category_vextension.png"></a>
+        <a href="./?category=emotionalsense"><img src="../img/category_emotionalsense.png"></a>
+        <a href="./?category=technika1"><img src="../img/category_technika1.png"></a>
+        <a href="./?category=technika2"><img src="../img/category_technika2.png"></a>
+        <a href="./?category=technika3"><img src="../img/category_technika3.png"></a>
+        <a href="./?category=collaboration"><img src="../img/category_collaboration.png"></a>
+    </div>
     <div class="grid">
     </div>
     <script type="text/javascript">
+        collaboration = ["guiltygear", "girlsfrontline", "groovecoaster", "deemo", "cytus","chunithm"];
         replaces = [["\\","＼"],["/","／"],[":","："],["*","＊"],["?","？"],["\"","＂"],["<","＜"],[">","＞"],["|","｜"],["&","＆"],["#","＃"]];
         grid = document.querySelector(".grid");
+        url = new URL(document.URL);
+        category = url.searchParams.get("category");
 
         fetch("../list.json")
         .then(response => response.json())
         .then(json => {
             list = json;
-            songs = Object.values(list).reduce((a, b) => [...a, ...b]).map(a => a.title);
-            songs.sort((a,b) => a.toLowerCase()>b.toLowerCase()? 1:-1);
-            console.log(songs)
+            songs = Object.values(list).reduce((a, b) => [...a, ...b]);
+            songs.sort((a,b) => a.title.toLowerCase()>b.title.toLowerCase()? 1:-1);
 
-            songs.forEach(song => {
-                let item = document.createElement("div");
-                item.className = "item";
-                // let div = document.createElement("div");
-                for (let i=0; i<5; i++) {
-                    let img = document.createElement("img");
-                    let title = song;
-                    for (let rep of replaces) {
-                        title = title.replace(rep[0], rep[1]);
-                    }
-                    img.src = `${title}_${i+1}.png`;
-                    img.loading = "lazy";
-                    item.appendChild(img);
+            if (category) {
+                menu.remove();
+                switch (category) {
+                    case "all":
+                        iter = songs;
+                        break;
+                    case "collaboration":
+                        iter =  collaboration.map(a=>list[a]).reduce((a,b)=>[...a,...b]);
+                        break;
+                    default:
+                        iter = list[category];
+                        break;
                 }
-                let p = document.createElement("p");
-                p.textContent = song;
-                // div.appendChild(img);
-                item.appendChild(p);
-                grid.appendChild(item);
-            });
+                iter.forEach(song => {
+                    let item = document.createElement("div");
+                    item.className = "item";
+                    for (let i=0; i<5; i++) {
+                        let img = document.createElement("img");
+                        let title = song.title;
+                        for (let rep of replaces) {
+                            title = title.replace(rep[0], rep[1]);
+                        }
+                        if (title == "Urban Night") {
+                            title = `${title} (${song["artist"]})`;
+                        };
+                        img.src = `${title}_${i+1}.png`;
+                        img.loading = "lazy";
+                        item.appendChild(img);
+                    }
+                    let p = document.createElement("p");
+                    p.textContent = song.title;
+                    item.appendChild(p);
+                    grid.appendChild(item);
+                });
+            }
+            else {
+                grid.remove();
+            }
         });
     </script>
 </body>
