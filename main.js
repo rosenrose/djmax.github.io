@@ -119,16 +119,17 @@ for (let i=0; i<maxCount; i++) {
     li.className = "left";
     let img = document.createElement("img");
     img.className = "song_pic";
-    let div = document.createElement("div");
-    div.className = "title_artist";
+    img.src= "";
+    let title_artist = document.createElement("div");
+    title_artist.className = "title_artist";
     let title = document.createElement("p");
     title.className = "title";
     let artist = document.createElement("p");
     artist.className = "artist";
-    div.appendChild(title);
-    div.appendChild(artist);
+    title_artist.appendChild(title);
+    title_artist.appendChild(artist);
     li.appendChild(img);
-    li.appendChild(div);
+    li.appendChild(title_artist);
     ol.appendChild(li);
 }
 
@@ -199,7 +200,9 @@ document.querySelector("#run").addEventListener("click", () => {
     for (let dlc of dlcSelect) {
         let temp = JSON.parse(JSON.stringify(list[dlc]));
         for (let song of temp) {
-            if(!song.hasOwnProperty("game")) song["game"] = dlc;
+            if (!song.hasOwnProperty("game")) {
+                song["game"] = dlc;
+            }
         }
         result = [...result, ...temp];
     }
@@ -241,24 +244,24 @@ document.querySelector("#run").addEventListener("click", () => {
     }
     let li = document.querySelectorAll("#result li");
     for (let i=0; i<maxCount; i++) {
-        li[i].querySelector("img").src = "";
+        li[i].querySelector(".song_pic").src = "";
         let p = li[i].querySelectorAll("p");
         p[0].textContent = "";
         p[1].textContent = "";
         p[0].style.color = "";
         p[1].style.color = "";
-        li[i].querySelector("div").style.backgroundImage = "";
+        li[i].querySelector(".title_artist").style.backgroundImage = "";
     }
     for (let i=0; i<min; i++) {
         let game = resultList[i]["game"];
-        let src = resultList[i]["title"];
+        let title = resultList[i]["title"];
         for (let rep of replaces) {
-            src = src.replace(rep[0], rep[1]);
+            title = title.replace(rep[0], rep[1]);
         }
         if (resultList[i]["title"] == "Urban Night") {
-            src = `${src} (${resultList[i]["artist"]})`;
+            title = `${title} (${resultList[i]["artist"]})`;
         }
-        li[i].querySelector("img").src = `song_pic/${src}_${getRandomInt(2,5)}.png`;
+        li[i].querySelector(".song_pic").src = `song_pic/${title}_${getRandomInt(1,5)}.png`;
         
         let p = li[i].querySelectorAll("p");
         p[0].textContent = resultList[i]["title"];
@@ -283,7 +286,7 @@ document.querySelector("#run").addEventListener("click", () => {
             p[0].style.color = "#fff";
             p[1].style.color = "#fff";
         }
-        li[i].querySelector("div").style.backgroundImage = (collaboration.includes(game))? "url(color_collaboration.png)" : `url(color_${game}.png)`;
+        li[i].querySelector(".title_artist").style.backgroundImage = (collaboration.includes(game))? "url(color_collaboration.png)" : `url(color_${game}.png)`;
     }
 });
 
